@@ -1,7 +1,7 @@
-import ISocketSevice from "../interface/ISocketSevice";
+import ISocketSevice from './ISocketSevice';
 
 export class SocketSevice implements ISocketSevice {
-  private readonly URL = "ws://localhost:3002";
+  private readonly URL = 'ws://localhost:3002';
 
   private _socket!: WebSocket;
   private messageCallbacks: ((message: string) => void)[] = [];
@@ -34,7 +34,7 @@ export class SocketSevice implements ISocketSevice {
 
   public unsubscribeFromMessages(callback: (message: string) => void) {
     this.messageCallbacks = this.messageCallbacks.filter(
-      (cb) => cb !== callback
+      (cb) => cb !== callback,
     );
   }
 
