@@ -1,23 +1,20 @@
+import classNames from 'classnames';
+
 import { Box } from '@mui/material';
 
 import ConnectionSection from './ConnectionSection';
+import { useStyles } from './style';
 
 interface IConnectionPanel {
-  classes?: string;
+  className?: string;
 }
 
 const ConnectionPanel = (props: IConnectionPanel) => {
-  const { classes } = props;
+  const { className } = props;
+  const { classes } = useStyles();
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        border: '1px solid black',
-      }}
-      className={classes}
-    >
+    <Box className={classNames(classes.container, className)}>
       <ConnectionSection title="Listening Interface" />
       <ConnectionSection title="Server Interface" />
     </Box>

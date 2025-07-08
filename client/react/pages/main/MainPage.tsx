@@ -19,10 +19,10 @@ export default function MainPage() {
   return (
     <ContentContainer>
       <Box className={classes.container}>
-        <SavePackage classes={classes.savePackage_area} />
-        <SelectedPackage classes={classes.selectedPackage_area} />
-        <InformationChat classes={classes.informationChat_area} />
-        <ConnectionPanel classes={classes.connectionPanel_area} />
+        <SavePackage className={classes.savePackage_area} />
+        <SelectedPackage className={classes.selectedPackage_area} />
+        <InformationChat className={classes.informationChat_area} />
+        <ConnectionPanel className={classes.connectionPanel_area} />
       </Box>
     </ContentContainer>
   );

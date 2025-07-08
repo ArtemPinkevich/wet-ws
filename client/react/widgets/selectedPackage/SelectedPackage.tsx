@@ -3,11 +3,11 @@ import { Box, MenuItem, Select, TextField } from '@mui/material';
 import { StyledButton } from '@/shared/ui';
 
 interface ISelectedPackage {
-  classes?: string;
+  className?: string;
 }
 
 const SelectedPackage = (props: ISelectedPackage) => {
-  const { classes } = props;
+  const { className } = props;
 
   const fileName = 'Package.json';
   const menuItems = ['client', 'server', 'WebSocketTransceiver'];
@@ -20,7 +20,7 @@ const SelectedPackage = (props: ISelectedPackage) => {
           width: '100%',
           border: '1px solid black',
         }}
-        className={classes}
+        className={className}
       />
       <TextField variant="filled" sx={{ width: '100%' }}></TextField>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

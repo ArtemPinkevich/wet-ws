@@ -9,11 +9,11 @@ import {
 import { StyledButton } from '@/shared/ui';
 
 interface IInformationChat {
-  classes?: string;
+  className?: string;
 }
 
 const InformationChat = (props: IInformationChat) => {
-  const { classes } = props;
+  const { className } = props;
 
   return (
     <Box
@@ -24,7 +24,7 @@ const InformationChat = (props: IInformationChat) => {
         position: 'relative',
         border: '1px solid black',
       }}
-      className={classes}
+      className={className}
     >
       <Stack
         direction="row"
