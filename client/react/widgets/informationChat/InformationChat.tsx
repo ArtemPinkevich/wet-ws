@@ -8,7 +8,13 @@ import {
 
 import StyledButton from '../../shared/ui/styledButton/StyledButton';
 
-const InformationChat = () => {
+interface IInformationChat {
+  classes?: string;
+}
+
+const InformationChat = (props: IInformationChat) => {
+  const { classes } = props;
+
   return (
     <Box
       sx={{
@@ -16,7 +22,9 @@ const InformationChat = () => {
         flexDirection: 'column',
         height: '100%',
         position: 'relative',
+        border: '1px solid black',
       }}
+      className={classes}
     >
       <Stack
         direction="row"

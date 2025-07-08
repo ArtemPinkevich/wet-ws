@@ -2,9 +2,22 @@ import { Box } from '@mui/material';
 
 import ConnectionSection from './ConnectionSection';
 
-const ConnectionPanel = () => {
+interface IConnectionPanel {
+  classes?: string;
+}
+
+const ConnectionPanel = (props: IConnectionPanel) => {
+  const { classes } = props;
+
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        border: '1px solid black',
+      }}
+      className={classes}
+    >
       <ConnectionSection title="Listening Interface" />
       <ConnectionSection title="Server Interface" />
     </Box>

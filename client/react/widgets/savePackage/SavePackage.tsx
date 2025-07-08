@@ -3,9 +3,22 @@ import { Box, IconButton } from '@mui/material';
 
 import StyledButton from '../../shared/ui/styledButton/StyledButton';
 
-const SavePackage = () => {
+interface ISavePackage {
+  classes?: string;
+}
+
+const SavePackage = (props: ISavePackage) => {
+  const { classes } = props;
+
   return (
-    <Box sx={{ width: '100%', height: '100%' }}>
+    <Box
+      sx={{
+        width: '100%',
+        height: '100%',
+        border: '1px solid black',
+      }}
+      className={classes}
+    >
       <Box
         sx={{
           display: 'flex',

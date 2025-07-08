@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 
 import {
   ConnectionPanel,
@@ -9,34 +9,21 @@ import {
   SelectedPackage,
 } from '@/widgets/index';
 
+import ContentContainer from '@/shared/ui/contentContainer/ContentContainer';
+
+import { useStyles } from './style';
+
 export default function MainPage() {
+  const { classes } = useStyles();
+
   return (
-    <Stack
-      sx={{
-        width: '1024px',
-        height: '90vh',
-        margin: '0 auto',
-      }}
-    >
-      <Stack direction="row" sx={{ height: '90%' }}>
-        <Box
-          sx={{
-            width: '25%',
-            border: '1px solid black',
-          }}
-        >
-          <SavePackage />
-        </Box>
-        <Box sx={{ width: '50%', border: '1px solid black' }}>
-          <SelectedPackage />
-        </Box>
-        <Box sx={{ width: '25%', border: '1px solid black' }}>
-          <InformationChat />
-        </Box>
-      </Stack>
-      <Box sx={{ height: '10%', border: '1px solid black' }}>
-        <ConnectionPanel />
+    <ContentContainer>
+      <Box className={classes.container}>
+        <SavePackage classes={classes.savePackage_area} />
+        <SelectedPackage classes={classes.selectedPackage_area} />
+        <InformationChat classes={classes.informationChat_area} />
+        <ConnectionPanel classes={classes.connectionPanel_area} />
       </Box>
-    </Stack>
+    </ContentContainer>
   );
 }
