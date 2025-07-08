@@ -1,6 +1,6 @@
 import { Box, MenuItem, Select, TextField } from '@mui/material';
 
-import StyledButton from '../../shared/ui/styledButton/StyledButton';
+import { StyledButton } from '@/shared/ui';
 
 interface ISelectedPackage {
   classes?: string;

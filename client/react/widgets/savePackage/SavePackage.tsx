@@ -1,7 +1,7 @@
 import { MoreHoriz } from '@mui/icons-material';
 import { Box, IconButton } from '@mui/material';
 
-import StyledButton from '../../shared/ui/styledButton/StyledButton';
+import { StyledButton, StyledIconButton } from '@/shared/ui';
 
 interface ISavePackage {
   classes?: string;
@@ -28,9 +28,11 @@ const SavePackage = (props: ISavePackage) => {
       >
         <StyledButton variant="contained">ADD</StyledButton>
         <span>file name</span>
-        <IconButton>
-          <MoreHoriz />
-        </IconButton>
+        <StyledIconButton>
+          <IconButton>
+            <MoreHoriz />
+          </IconButton>
+        </StyledIconButton>
       </Box>
 
       <Box>пакет</Box>

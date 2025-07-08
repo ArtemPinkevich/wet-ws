@@ -1,6 +1,6 @@
 import { Box, TextField } from '@mui/material';
 
-import StyledButton from '../../shared/ui/styledButton/StyledButton';
+import { StyledButton } from '@/shared/ui';
 
 interface IConnectionPanel {
   title: string;

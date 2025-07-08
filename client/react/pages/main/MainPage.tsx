@@ -9,7 +9,7 @@ import {
   SelectedPackage,
 } from '@/widgets/index';
 
-import ContentContainer from '@/shared/ui/contentContainer/ContentContainer';
+import { ContentContainer } from '@/shared/ui';
 
 import { useStyles } from './style';
 
