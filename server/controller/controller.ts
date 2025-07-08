@@ -4,14 +4,18 @@ import { writeTextJson } from "../helper/json.helper";
 export class ListenerData {
   static async saveInJson(req: Request, res: Response) {
     try {
-      const { clientPort, serverPort } = req.body;
-      if (clientPort && serverPort) {
+      const { ip, port, abonentType } = req.body;
+
+      if (ip && port) {
         writeTextJson({
-          clientPort: Number(clientPort),
-          serverPort: Number(serverPort),
+          abonentType: abonentType,
+          clientPort: ip,
+          serverPort: port,
         });
 
-        res.status(200).json({ message: "Ports successfully save in server!" });
+        res
+          .status(200)
+          .json({ message: "IP and PORT successfully save in server!" });
       }
     } catch (error: any) {
       res.status(400).json({ message: error.message });
