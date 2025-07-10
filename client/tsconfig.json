@@ -18,11 +18,11 @@
         "name": "next"
       }
     ],
-    "baseUrl": "./react",
+    "baseUrl": "./src",
     "paths": {
       "@/entities/*": ["entities/*"],
       "@/features/*": ["features/*"],
-      "@/pages/*": ["pages/*"],
+      "@/pages/*": ["view/*"],
       "@/shared/*": ["shared/*"],
       "@/widgets/*": ["widgets/*"]
     }

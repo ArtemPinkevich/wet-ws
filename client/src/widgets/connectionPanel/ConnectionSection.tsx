@@ -4,8 +4,7 @@ import { ChangeEvent, useState } from 'react';
 
 import { Box, TextField, Typography } from '@mui/material';
 
-import { StyledButton } from '@/shared/ui';
-
+import { StyledButton } from '../../shared/ui';
 import { useStyles } from './style';
 
 interface IConnectionPanel {

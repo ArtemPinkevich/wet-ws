@@ -2,15 +2,13 @@
 
 import { Box } from '@mui/material';
 
+import { ContentContainer } from '../../shared/ui';
 import {
   ConnectionPanel,
   InformationChat,
   SavePackage,
   SelectedPackage,
-} from '@/widgets/index';
-
-import { ContentContainer } from '@/shared/ui';
-
+} from '../../widgets/index';
 import { useStyles } from './style';
 
 export default function MainPage() {

@@ -1,7 +1,7 @@
 import { MoreHoriz } from '@mui/icons-material';
 import { Box } from '@mui/material';
 
-import { StyledButton, StyledIconButton } from '@/shared/ui';
+import { StyledButton, StyledIconButton } from '../../shared/ui';
 
 interface ISavePackage {
   className?: string;

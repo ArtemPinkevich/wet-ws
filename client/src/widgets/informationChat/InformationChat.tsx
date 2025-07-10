@@ -6,7 +6,7 @@ import {
   TextField,
 } from '@mui/material';
 
-import { StyledButton } from '@/shared/ui';
+import { StyledButton } from '../../shared/ui';
 
 interface IInformationChat {
   className?: string;
