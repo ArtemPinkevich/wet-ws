@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000"><title>Основной макет: подключения слева, чат справа</title>
+<rect x="0" y="0" width="1440" height="1000" rx="0" fill="#111925"/>
+<text x="28" y="40" font-family="Segoe UI, sans-serif" font-size="23" fill="#f0f4fa" font-weight="700" xml:space="preserve">WET-WS</text>
+<text x="1160" y="39" font-family="Segoe UI, sans-serif" font-size="13" fill="#8fd8ce" font-weight="400" xml:space="preserve">● Интерфейс синхронизирован</text>
+<rect x="24" y="64" width="310" height="912" rx="12" fill="#192334"/>
+<text x="42" y="98" font-family="Segoe UI, sans-serif" font-size="18" fill="#f0f4fa" font-weight="600" xml:space="preserve">Подключения</text>
+<text x="42" y="121" font-family="Segoe UI, sans-serif" font-size="12" fill="#9eacc0" font-weight="400" xml:space="preserve">Настройки действующего сеанса</text>
+<text x="42" y="158" font-family="Segoe UI, sans-serif" font-size="14" fill="#8fd8ce" font-weight="600" xml:space="preserve">Сервер</text>
+<text x="193" y="158" font-family="Segoe UI, sans-serif" font-size="12" fill="#8fd8ce" font-weight="400" xml:space="preserve">● Подключён</text>
+<text x="42" y="185" font-family="Segoe UI, sans-serif" font-size="13" fill="#9eacc0" font-weight="400" xml:space="preserve">Целевой адрес</text>
+<rect x="42" y="195" width="270" height="36" rx="6" fill="#202c40"/>
+<text x="53" y="218" font-family="Consolas, sans-serif" font-size="13" fill="#e0e9f5" font-weight="400" xml:space="preserve">ws://192.168.1.20:9000</text>
+<rect x="42" y="245" width="270" height="36" rx="6" fill="#42303a"/>
+<text x="95" y="269" font-family="Segoe UI, sans-serif" font-size="14" fill="#ffbdc4" font-weight="600" xml:space="preserve">Отключить сервер</text>
+<text x="42" y="324" font-family="Segoe UI, sans-serif" font-size="14" fill="#b7c9ff" font-weight="600" xml:space="preserve">Клиент</text>
+<text x="193" y="324" font-family="Segoe UI, sans-serif" font-size="12" fill="#b7c9ff" font-weight="400" xml:space="preserve">● Подключён</text>
+<text x="42" y="353" font-family="Segoe UI, sans-serif" font-size="13" fill="#9eacc0" font-weight="400" xml:space="preserve">Адрес привязки</text>
+<rect x="42" y="363" width="270" height="36" rx="6" fill="#202c40"/>
+<text x="53" y="386" font-family="Consolas, sans-serif" font-size="13" fill="#e0e9f5" font-weight="400" xml:space="preserve">0.0.0.0</text>
+<text x="42" y="420" font-family="Segoe UI, sans-serif" font-size="13" fill="#9eacc0" font-weight="400" xml:space="preserve">Порт приёма</text>
+<rect x="42" y="430" width="270" height="36" rx="6" fill="#202c40"/>
+<text x="53" y="453" font-family="Consolas, sans-serif" font-size="13" fill="#e0e9f5" font-weight="400" xml:space="preserve">8081</text>
+<text x="42" y="490" font-family="Segoe UI, sans-serif" font-size="12" fill="#9eacc0" font-weight="400" xml:space="preserve">Адрес для клиента в сети:</text>
+<text x="42" y="513" font-family="Consolas, sans-serif" font-size="13" fill="#dce5f2" font-weight="400" xml:space="preserve">ws://192.168.1.10:8081</text>
+<rect x="42" y="533" width="270" height="36" rx="6" fill="#42303a"/>
+<text x="95" y="557" font-family="Segoe UI, sans-serif" font-size="14" fill="#ffbdc4" font-weight="600" xml:space="preserve">Отключить клиента</text>
+<text x="42" y="591" font-family="Segoe UI, sans-serif" font-size="12" fill="#9eacc0" font-weight="400" xml:space="preserve">Приём новых клиентов открыт</text>
+<rect x="42" y="607" width="270" height="32" rx="6" fill="#263348"/>
+<text x="84" y="628" font-family="Segoe UI, sans-serif" font-size="13" fill="#dce5f2" font-weight="600" xml:space="preserve">Остановить приём</text>
+<text x="42" y="678" font-family="Segoe UI, sans-serif" font-size="13" fill="#9eacc0" font-weight="400" xml:space="preserve">Общий подпротокол (необязательно)</text>
+<rect x="42" y="688" width="270" height="36" rx="6" fill="#202c40"/>
+<text x="53" y="711" font-family="Consolas, sans-serif" font-size="13" fill="#e0e9f5" font-weight="400" xml:space="preserve"></text>
+<text x="53" y="711" font-family="Segoe UI, sans-serif" font-size="13" fill="#9eacc0" font-weight="400" xml:space="preserve">Не задан</text>
+<rect x="341" y="64" width="10" height="912" rx="0" fill="#111925"/>
+<rect x="344" y="467" width="4" height="70" rx="2" fill="#667a96"/>
+<text x="328" y="455" font-family="Segoe UI, sans-serif" font-size="20" fill="#9eacc0" font-weight="400" xml:space="preserve">↔</text>
+<rect x="358" y="64" width="1058" height="912" rx="12" fill="#172131"/>
+<text x="384" y="101" font-family="Segoe UI, sans-serif" font-size="21" fill="#f0f4fa" font-weight="600" xml:space="preserve">Трафик</text>
+<rect x="1210" y="80" width="184" height="34" rx="6" fill="#263348"/>
+<text x="1224" y="102" font-family="Segoe UI, sans-serif" font-size="13" fill="#dce5f2" font-weight="600" xml:space="preserve">Очистить показанное</text>
+<rect x="378" y="151" width="1018" height="1" rx="0" fill="#2c394c"/>
+<text x="384" y="178" font-family="Segoe UI, sans-serif" font-size="14" fill="#b7c9ff" font-weight="600" xml:space="preserve">Клиент</text>
+<text x="1330" y="178" font-family="Segoe UI, sans-serif" font-size="14" fill="#8fd8ce" font-weight="600" xml:space="preserve">Сервер</text>
+<text x="716" y="217" font-family="Segoe UI, sans-serif" font-size="12" fill="#9eacc0" font-weight="400" xml:space="preserve">Сеанс начат · 14:32:08</text>
+<rect x="384" y="239" width="450" height="113" rx="12" fill="#30415f"/>
+<text x="402" y="266" font-family="Segoe UI, sans-serif" font-size="13" fill="#b7c9ff" font-weight="600" xml:space="preserve">14:32:09</text>
+<text x="402" y="296" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">{"action":"subscribe","topic":"status"}</text>
+<text x="402" y="334" font-family="Segoe UI, sans-serif" font-size="12" fill="#a7b6ce" font-weight="400" xml:space="preserve">Передано на отправку</text>
+<rect x="920" y="371" width="468" height="112" rx="12" fill="#24364b"/>
+<text x="938" y="398" font-family="Segoe UI, sans-serif" font-size="13" fill="#8fd8ce" font-weight="600" xml:space="preserve">14:32:09</text>
+<text x="938" y="428" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">{"status":"ready","session":"demo"}</text>
+<text x="938" y="465" font-family="Segoe UI, sans-serif" font-size="12" fill="#a7b6ce" font-weight="400" xml:space="preserve">Передано на отправку</text>
+<rect x="384" y="504" width="954" height="256" rx="12" fill="#30415f"/>
+<text x="402" y="531" font-family="Segoe UI, sans-serif" font-size="13" fill="#b7c9ff" font-weight="400" xml:space="preserve">14:32:10</text>
+<text x="402" y="559" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">{</text>
+<text x="402" y="578" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">  "event": "update",</text>
+<text x="402" y="597" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">  "description": "Длинное сообщение занимает почти всю ширину чата.",</text>
+<text x="402" y="616" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">  "items": [</text>
+<text x="402" y="635" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">    {"id": 1, "state": "ready"},</text>
+<text x="402" y="654" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">    {"id": 2, "state": "waiting"},</text>
+<text x="402" y="673" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">    {"id": 3, "state": "ready"},</text>
+<text x="402" y="692" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">    {"id": 4, "state": "waiting"},</text>
+<rect x="402" y="708" width="130" height="30" rx="6" fill="#435575"/>
+<text x="418" y="728" font-family="Segoe UI, sans-serif" font-size="13" fill="#e4ecff" font-weight="600" xml:space="preserve">Развернуть ↓</text>
+<text x="556" y="728" font-family="Segoe UI, sans-serif" font-size="12" fill="#a7b6ce" font-weight="400" xml:space="preserve">Показаны первые 8 строк</text>
+<text x="1129" y="739" font-family="Segoe UI, sans-serif" font-size="12" fill="#a7b6ce" font-weight="400" xml:space="preserve">Передано на отправку</text>
+<rect x="1018" y="780" width="370" height="100" rx="12" fill="#24364b"/>
+<text x="1036" y="807" font-family="Segoe UI, sans-serif" font-size="13" fill="#8fd8ce" font-weight="600" xml:space="preserve">14:32:11</text>
+<text x="1036" y="837" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">&lt;status&gt;Готово&lt;/status&gt;</text>
+<text x="1036" y="862" font-family="Segoe UI, sans-serif" font-size="12" fill="#a7b6ce" font-weight="400" xml:space="preserve">Передано на отправку</text>
+<rect x="1410" y="213" width="3" height="661" rx="1" fill="#263348"/>
+<rect x="1410" y="731" width="3" height="140" rx="1" fill="#667a96"/>
+</svg>

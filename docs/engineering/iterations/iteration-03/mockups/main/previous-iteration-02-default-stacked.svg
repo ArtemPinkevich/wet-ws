@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="1280" viewBox="0 0 390 1280"><title>Узкое окно: настройки сверху и чат снизу</title>
+<rect x="0" y="0" width="390" height="1280" rx="0" fill="#111925"/>
+<text x="18" y="35" font-family="Segoe UI, sans-serif" font-size="22" fill="#f0f4fa" font-weight="700" xml:space="preserve">WET-WS</text>
+<text x="18" y="61" font-family="Segoe UI, sans-serif" font-size="12" fill="#8fd8ce" font-weight="400" xml:space="preserve">● Интерфейс синхронизирован</text>
+<rect x="14" y="80" width="362" height="690" rx="12" fill="#192334"/>
+<text x="30" y="112" font-family="Segoe UI, sans-serif" font-size="18" fill="#f0f4fa" font-weight="600" xml:space="preserve">Подключения</text>
+<text x="30" y="150" font-family="Segoe UI, sans-serif" font-size="14" fill="#8fd8ce" font-weight="600" xml:space="preserve">Сервер</text>
+<text x="255" y="150" font-family="Segoe UI, sans-serif" font-size="12" fill="#8fd8ce" font-weight="400" xml:space="preserve">● Подключён</text>
+<text x="30" y="178" font-family="Segoe UI, sans-serif" font-size="12" fill="#9eacc0" font-weight="400" xml:space="preserve">Целевой адрес</text>
+<rect x="30" y="188" width="330" height="36" rx="6" fill="#202c40"/>
+<text x="42" y="212" font-family="Consolas, sans-serif" font-size="13" fill="#e0e9f5" font-weight="400" xml:space="preserve">ws://192.168.1.20:9000</text>
+<rect x="30" y="238" width="330" height="36" rx="6" fill="#42303a"/>
+<text x="92" y="262" font-family="Segoe UI, sans-serif" font-size="13" fill="#ffbdc4" font-weight="600" xml:space="preserve">Отключить сервер</text>
+<text x="30" y="315" font-family="Segoe UI, sans-serif" font-size="14" fill="#b7c9ff" font-weight="600" xml:space="preserve">Клиент</text>
+<text x="255" y="315" font-family="Segoe UI, sans-serif" font-size="12" fill="#b7c9ff" font-weight="400" xml:space="preserve">● Подключён</text>
+<text x="30" y="345" font-family="Segoe UI, sans-serif" font-size="12" fill="#9eacc0" font-weight="400" xml:space="preserve">Адрес привязки</text>
+<rect x="30" y="355" width="330" height="36" rx="6" fill="#202c40"/>
+<text x="42" y="379" font-family="Consolas, sans-serif" font-size="13" fill="#e0e9f5" font-weight="400" xml:space="preserve">0.0.0.0</text>
+<text x="30" y="410" font-family="Segoe UI, sans-serif" font-size="12" fill="#9eacc0" font-weight="400" xml:space="preserve">Порт приёма</text>
+<rect x="30" y="420" width="330" height="36" rx="6" fill="#202c40"/>
+<text x="42" y="444" font-family="Consolas, sans-serif" font-size="13" fill="#e0e9f5" font-weight="400" xml:space="preserve">8081</text>
+<text x="30" y="480" font-family="Segoe UI, sans-serif" font-size="12" fill="#9eacc0" font-weight="400" xml:space="preserve">Адрес для клиента в сети:</text>
+<text x="30" y="505" font-family="Consolas, sans-serif" font-size="13" fill="#dce5f2" font-weight="400" xml:space="preserve">ws://192.168.1.10:8081</text>
+<rect x="30" y="527" width="330" height="36" rx="6" fill="#42303a"/>
+<text x="92" y="551" font-family="Segoe UI, sans-serif" font-size="13" fill="#ffbdc4" font-weight="600" xml:space="preserve">Отключить клиента</text>
+<text x="30" y="590" font-family="Segoe UI, sans-serif" font-size="12" fill="#9eacc0" font-weight="400" xml:space="preserve">Приём новых клиентов открыт</text>
+<rect x="30" y="606" width="330" height="36" rx="6" fill="#263348"/>
+<text x="92" y="630" font-family="Segoe UI, sans-serif" font-size="13" fill="#dce5f2" font-weight="600" xml:space="preserve">Остановить приём</text>
+<text x="30" y="675" font-family="Segoe UI, sans-serif" font-size="12" fill="#9eacc0" font-weight="400" xml:space="preserve">Общий подпротокол (необязательно)</text>
+<rect x="30" y="685" width="330" height="36" rx="6" fill="#202c40"/>
+<text x="42" y="709" font-family="Consolas, sans-serif" font-size="13" fill="#e0e9f5" font-weight="400" xml:space="preserve">Не задан</text>
+<g transform="translate(0,-100)">
+<rect x="14" y="887" width="362" height="465" rx="12" fill="#172131"/>
+<text x="30" y="919" font-family="Segoe UI, sans-serif" font-size="19" fill="#f0f4fa" font-weight="600" xml:space="preserve">Трафик</text>
+<rect x="196" y="899" width="163" height="34" rx="6" fill="#263348"/>
+<text x="208" y="921" font-family="Segoe UI, sans-serif" font-size="12" fill="#dce5f2" font-weight="600" xml:space="preserve">Очистить показанное</text>
+<text x="30" y="954" font-family="Segoe UI, sans-serif" font-size="13" fill="#b7c9ff" font-weight="600" xml:space="preserve">Клиент</text>
+<text x="303" y="954" font-family="Segoe UI, sans-serif" font-size="13" fill="#8fd8ce" font-weight="600" xml:space="preserve">Сервер</text>
+<rect x="30" y="977" width="280" height="111" rx="12" fill="#30415f"/>
+<text x="48" y="1004" font-family="Segoe UI, sans-serif" font-size="13" fill="#b7c9ff" font-weight="600" xml:space="preserve">14:32:09</text>
+<text x="48" y="1034" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">Привет, сервер</text>
+<text x="48" y="1070" font-family="Segoe UI, sans-serif" font-size="12" fill="#a7b6ce" font-weight="400" xml:space="preserve">Передано на отправку</text>
+<rect x="80" y="1105" width="280" height="111" rx="12" fill="#24364b"/>
+<text x="98" y="1132" font-family="Segoe UI, sans-serif" font-size="13" fill="#8fd8ce" font-weight="600" xml:space="preserve">14:32:09</text>
+<text x="98" y="1162" font-family="Consolas, sans-serif" font-size="15" fill="#edf3fc" font-weight="400" xml:space="preserve">Привет, сервер</text>
+<text x="98" y="1198" font-family="Segoe UI, sans-serif" font-size="12" fill="#a7b6ce" font-weight="400" xml:space="preserve">Передано на отправку</text>
+</g></svg>

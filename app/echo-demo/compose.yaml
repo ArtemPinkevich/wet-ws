@@ -1,0 +1,10 @@
+name: app
+services:
+  echo-demo:
+    image: wet-ws-echo-demo:local
+    build:
+      context: ..
+      dockerfile: echo-demo/Dockerfile
+    ports:
+      - "9000:9000"
+      - "9001:9001"
