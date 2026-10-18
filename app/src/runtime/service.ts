@@ -79,15 +79,6 @@ export async function startService(
     ['/ui/control-client.js', asset('control-client/control-client.js')],
     ['/ui/model.js', asset('app-model/model.js')],
     [
-      '/ui/controller.js',
-      {
-        path: fileURLToPath(
-          new URL('../legacy/iteration-01/controller.js', import.meta.url),
-        ),
-        type: 'text/javascript; charset=utf-8',
-      },
-    ],
-    [
       '/ui/styles.css',
       asset('app-shell/styles.css', 'text/css; charset=utf-8'),
     ],
@@ -113,15 +104,6 @@ export async function startService(
           },
         ] as const,
     ),
-    [
-      '/shared/limits.js',
-      {
-        path: fileURLToPath(
-          new URL('../legacy/iteration-01/limits.js', import.meta.url),
-        ),
-        type: 'text/javascript; charset=utf-8',
-      },
-    ],
   ]);
   let authority = '';
   let closing = false;

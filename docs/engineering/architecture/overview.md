@@ -30,9 +30,9 @@ Runtime создаёт Connection и передаёт его Application чер�
 
 App Shell связывает App Model, Connection UI, Chat UI, Message UI и Control Client. Message UI сохраняет редактор и адресата локально в DOM без перезаписи при обновлениях истории; reload сбрасывает черновик. Application владеет общим autoForward (по умолчанию true), Message Flow — служебными командами send/set-auto-forward и транспортной отправкой; History не становится очередью. UI-модули обращаются к модели, не к backend-реализациям; App Model не импортирует DOM/WS, события транспорта получает через внедрённый интерфейс.
 
-Client Acceptor, Server Connector и Pair Transport остаются операциями небольшого Connection, без отдельных классов/каталогов. History View, Rendered Tracker и Clear Action реализованы внутри Chat UI. Фиктивные адаптеры ws не создаются. `legacy/iteration-01` хранит прежний EchoController и его константы для исторических тестов; активный UI их не импортирует. Это не модуль текущей архитектуры.
+Client Acceptor, Server Connector и Pair Transport остаются операциями небольшого Connection, без отдельных классов/каталогов. History View, Rendered Tracker и Clear Action реализованы внутри Chat UI. Фиктивные адаптеры ws не создаются.
 
-Тесты находятся в `app/tests/runtime`, `app/tests/integration` и `app/tests/legacy/iteration-01`. Интеграционные сценарии охватывают несколько модулей и не дробятся ради повторения дерева.
+Тесты находятся в `app/tests/runtime` и `app/tests/integration`. Интеграционные сценарии охватывают несколько модулей и не дробятся ради повторения дерева.
 
 ## Runtime / deployment model
 

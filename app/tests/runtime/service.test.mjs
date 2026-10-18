@@ -13,10 +13,14 @@ let assetsDir;
 before(async () => {
   assetsDir = await mkdtemp(join(tmpdir(), 'wet-ws-service-'));
   await mkdir(join(assetsDir, 'app-shell'));
+  await mkdir(join(assetsDir, 'app-model'));
+  await writeFile(
+    join(assetsDir, 'app-model', 'model.js'),
+    'export const model = true;',
+  );
   for (const [file, text] of Object.entries({
     'index.html': '<!doctype html><title>Local UI</title>',
     'app.js': 'export const app = true;',
-    'controller.js': 'export const controller = true;',
     'styles.css': 'body { color: black; }',
   }))
     await writeFile(join(assetsDir, 'app-shell', file), text);
@@ -133,9 +137,9 @@ test('HTTP serves only allowlisted resources with correct MIME and restrictive h
   for (const [path, type] of [
     ['/', 'text/html'],
     ['/ui/app.js', 'text/javascript'],
-    ['/ui/controller.js', 'text/javascript'],
+    ['/frontend/app-model/model.js', 'text/javascript'],
     ['/ui/styles.css', 'text/css'],
-    ['/shared/limits.js', 'text/javascript'],
+    ['/shared/contracts.js', 'text/javascript'],
   ]) {
     const response = await http(service, path);
     assert.equal(response.status, 200, path);
@@ -163,6 +167,8 @@ test('HTTP serves only allowlisted resources with correct MIME and restrictive h
     403,
   );
   for (const path of [
+    '/ui/controller.js',
+    '/shared/limits.js',
     '/service.js',
     '/ui/',
     '/ui/../service.js',
