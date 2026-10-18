@@ -1,0 +1,51 @@
+{
+  "name": "wet-ws-ai",
+  "productName": "wet-ws-ai",
+  "version": "0.1.0",
+  "description": "Проверка общей основы серверной и настольной WebSocket-поставок",
+  "private": true,
+  "type": "module",
+  "main": "dist/runtime/desktop.js",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "node scripts/copy-assets.mjs --clean && tsc && node scripts/copy-assets.mjs",
+    "start": "node dist/runtime/server.js",
+    "desktop": "electron .",
+    "demo:echo": "node echo-demo/server.mjs",
+    "check:iteration-02": "node scripts/check-iteration-02.mjs",
+    "test": "npm run build && node --test tests/runtime/*.test.mjs tests/integration/*.test.mjs",
+    "make": "node scripts/make-release.mjs",
+    "snapshot": "node scripts/snapshot.mjs",
+    "format": "prettier --write \"src/**/*.{ts,js,mjs,cjs,html,css}\" \"tests/**/*.mjs\" \"scripts/**/*.mjs\" \"echo-demo/**/*.mjs\" \"*.{json,cjs,mjs}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js,mjs,cjs,html,css}\" \"tests/**/*.mjs\" \"scripts/**/*.mjs\" \"echo-demo/**/*.mjs\" \"*.{json,cjs,mjs}\"",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix --fix-type layout --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run format:check && npm run lint && npm run typecheck",
+    "make:docker": "node scripts/make-docker-release.mjs",
+    "check:iteration-03": "node scripts/check-iteration-03.mjs"
+  },
+  "dependencies": {
+    "ws": "8.22.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "8.0.1",
+    "@electron-forge/maker-zip": "8.0.1",
+    "@electron/asar": "4.3.1",
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.19.1",
+    "@types/ws": "8.18.2",
+    "electron": "44.5.1",
+    "eslint": "10.13.0",
+    "globals": "17.13.0",
+    "playwright": "1.63.0",
+    "prettier": "3.9.10",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.2"
+  },
+  "config": {
+    "forge": "./forge.config.cjs"
+  }
+}

@@ -1,0 +1,10 @@
+*
+!package.json
+!package-lock.json
+!tsconfig.json
+!src/
+!src/**
+!scripts/
+!scripts/copy-assets.mjs
+!echo-demo/
+!echo-demo/server.mjs

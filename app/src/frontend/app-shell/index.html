@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WET-WS</title>
+    <link rel="stylesheet" href="/frontend/app-shell/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>WET-WS</h1>
+      <span id="control-state" role="status">Получаем состояние…</span>
+    </header>
+    <main>
+      <section class="settings" id="settings">
+        <h2>Подключения</h2>
+        <div class="side">
+          <h3>Сервер <span id="server-state">Не подключён</span></h3>
+          <label for="url">Целевой адрес</label
+          ><input id="url" placeholder="ws://…" autocomplete="off" /><button
+            id="server-action"
+            data-command
+            disabled
+          >
+            Подключить сервер
+          </button>
+        </div>
+        <div class="side">
+          <h3>Клиент <span id="client-state">Не подключён</span></h3>
+          <label for="host">Адрес привязки</label
+          ><input id="host" value="0.0.0.0" /><label for="port"
+            >Порт приёма</label
+          ><input
+            id="port"
+            type="number"
+            min="0"
+            max="65535"
+            value="8081"
+          /><label>Адрес для клиента в сети</label
+          ><output id="client-address"></output
+          ><button id="client-action" data-command disabled>
+            Начать приём
+          </button>
+          <p id="listener-state">Приём закрыт</p>
+          <button id="listener-stop" data-command hidden>
+            Остановить приём
+          </button>
+        </div>
+        <label for="protocol">Общий подпротокол (необязательно)</label
+        ><input id="protocol" placeholder="Не задан" autocomplete="off" />
+        <p id="error" role="alert"></p>
+      </section>
+      <div
+        id="splitter"
+        role="separator"
+        tabindex="0"
+        aria-label="Ширина настроек"
+        aria-orientation="vertical"
+        aria-controls="settings"
+        aria-valuemin="290"
+        aria-valuemax="720"
+        aria-valuenow="320"
+      ></div>
+      <section class="traffic">
+        <div class="chat-header">
+          <h2>Трафик</h2>
+          <button id="clear" data-command disabled>Очистить показанное</button>
+        </div>
+        <label class="forward-toggle"
+          ><input id="auto-forward" type="checkbox" disabled /> Автопересылка
+          обоих направлений</label
+        >
+        <p id="forward-state" role="status">Получаем состояние пересылки…</p>
+        <div class="directions"><span>Клиент</span><span>Сервер</span></div>
+        <p id="history-notice" role="status"></p>
+        <div id="chat" aria-label="История обмена"></div>
+        <section class="composer" aria-label="Отправка собственного сообщения">
+          <label for="message-text">Собственное сообщение</label>
+          <textarea
+            id="message-text"
+            rows="6"
+            spellcheck="false"
+            aria-describedby="send-hint"
+          ></textarea>
+          <div class="send-controls">
+            <label for="message-target">Получатель</label>
+            <select id="message-target">
+              <option value="server">Сервер</option>
+              <option value="client">Клиент</option>
+            </select>
+            <button id="send-message" disabled>Отправить сообщение</button>
+          </div>
+          <p id="send-hint" role="status"></p>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="/frontend/app-shell/app.js"></script>
+  </body>
+</html>
