@@ -56,8 +56,20 @@ export function createConnectionUI(model: AppModel): { render(): void } {
           : value === 'connecting'
             ? 'Подключаемся…'
             : 'Не подключён';
-      el('server-state').textContent = phase(state.server);
-      el('client-state').textContent = phase(state.client);
+      el('server-state').textContent =
+        'Сервер · ' +
+        (model.synced ? phase(state.server) : 'Состояние неизвестно');
+      el('client-state').textContent =
+        'Клиент · ' +
+        (model.synced ? phase(state.client) : 'Состояние неизвестно');
+      for (const side of ['client', 'server'] as const) {
+        el(side + '-state').removeAttribute('aria-label');
+        el(side + '-state').removeAttribute('title');
+        el(side + '-state').classList.toggle(
+          'offline',
+          !model.synced || state[side] !== 'connected',
+        );
+      }
       el('listener-state').textContent = state.listener
         ? 'Приём новых клиентов открыт'
         : 'Приём закрыт';

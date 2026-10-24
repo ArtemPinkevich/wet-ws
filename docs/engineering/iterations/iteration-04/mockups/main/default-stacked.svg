@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="900" viewBox="0 0 390 900"><title>WET-WS · narrow workspace · Concept A responsive navigation</title><desc>Iteration 04 proposal derived from Iteration 03 Concept A: left workspace, right chat, inline connection settings. Not implemented or accepted.</desc><style>text{font-family:'Segoe UI',Arial,sans-serif}.mono{font-family:Consolas,'Courier New',monospace}</style>
+<rect x="0" y="0" width="390" height="900" rx="0" fill="#f5f7fa" stroke="#f5f7fa"/>
+<text x="16" y="34" font-size="20" fill="#15264a" font-weight="700">WET-WS</text>
+<text x="16" y="62" font-size="12" fill="#25845b" font-weight="400">● Клиент   ● Сервер</text>
+<rect x="231" y="18" width="143" height="36" rx="6" fill="#ffffff" stroke="#cfd8e5"/>
+<text x="245" y="41" font-size="13" fill="#253b5b" font-weight="600">Подключения</text>
+<rect x="16" y="82" width="358" height="39" rx="6" fill="#eaf0f8" stroke="#d4deec"/>
+<rect x="18" y="84" width="176" height="35" rx="5" fill="#ffffff" stroke="#ffffff"/>
+<text x="58" y="107" font-size="14" fill="#203352" font-weight="600">Редактор</text>
+<text x="229" y="107" font-size="14" fill="#6c809e" font-weight="400">Трафик · 5</text>
+<text x="16" y="147" font-size="20" fill="#15264a" font-weight="700">Редактор сообщения</text>
+
+<rect x="16" y="192" width="358" height="372" rx="5" fill="#ffffff" stroke="#b9cbdc"/>
+<text x="28" y="219" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">{</text>
+<text x="28" y="239" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">  "type": "snapshot",</text>
+<text x="28" y="259" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">  "session": "demo-7",</text>
+<text x="28" y="279" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">  "orders": [</text>
+<text x="28" y="299" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">    {</text>
+<text x="28" y="319" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">      "id": "ORD-1042",</text>
+<text x="28" y="339" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">      "status": "processing",</text>
+<text x="28" y="359" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">      "customer": {</text>
+<text x="28" y="379" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">        "name": "Alex Morgan",</text>
+<text x="28" y="399" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">        "address": {</text>
+<text x="28" y="419" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">          "city": "London"</text>
+<text x="28" y="439" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">        }</text>
+<text x="28" y="459" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">      }</text>
+<text x="28" y="479" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">    }</text>
+<text x="28" y="499" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">  ]</text>
+<text x="28" y="519" class="mono" font-size="12" fill="#2b3b54" xml:space="preserve">}</text>
+<text x="16" y="589" font-size="12" fill="#6b7d95" font-weight="400">Получатель</text>
+<rect x="110" y="570" width="264" height="36" rx="6" fill="#fafbfd" stroke="#dbe3ee"/>
+<text x="122" y="593" font-size="13" fill="#203352" font-weight="400">Сервер  ▾</text>
+<rect x="16" y="620" width="358" height="38" rx="6" fill="#1c5965" stroke="#1c5965"/>
+<text x="30" y="644" font-size="13" fill="#ffffff" font-weight="600">Отправить сообщение</text>
+<text x="16" y="685" font-size="12" fill="#6b7d95" font-weight="400">Имя новой заготовки</text>
+<rect x="16" y="696" width="358" height="36" rx="6" fill="#fafbfd" stroke="#dbe3ee"/>
+<text x="28" y="719" font-size="13" fill="#203352" font-weight="400">Проверка заказа</text>
+<rect x="16" y="744" width="358" height="36" rx="6" fill="#ffffff" stroke="#cfd8e5"/>
+<text x="30" y="767" font-size="13" fill="#253b5b" font-weight="600">Сохранить новую</text>
+<text x="16" y="880" font-size="11" fill="#6b7d95" font-weight="400">● Изменения черновика сохранены в этой вкладке</text>
+<text x="216" y="62" font-size="12" fill="#25845b">☑ Автопересылка: вкл</text><g><rect x="16" y="154" width="358" height="30" rx="5" fill="#ffffff" stroke="#dbe3ee"/><text x="28" y="174" font-size="11" fill="#6c809e">Сохранённые пакеты · 4 / 20  ▸</text></g></svg>

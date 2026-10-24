@@ -1,0 +1,21 @@
+{
+  "mode": "browser-source",
+  "node": "v24.21.0",
+  "criteria": [
+    "real three-pane composition; keyboard resizing; collapse/restore retains width/text; local template survives reload without backend storage",
+    "real bidirectional observations with forwarding OFF; literal manual send; repeat captures correct recipient; dirty replacement cancel/confirm; live and clear preserve draft/focus/library",
+    "control disconnect blocks sends; offline template load remains usable; reconnect never replays",
+    "390px: all three mobile areas reachable without horizontal document overflow",
+    "pointer resizing; long nested JSON preview does not change source; live preserves editor text/caret/focus and chat reading position",
+    "CR/CRLF source remains exact through load, no false dirty, save and real send; editing retains untouched line endings",
+    "visible storage corruption and quota errors; no false success or overwrite; full 20/20 library still loads",
+    "real oversized history payload is marked unavailable; open/repeat blocked without touching draft"
+  ],
+  "untested": [
+    "packaged ZIP",
+    "Docker artifact",
+    "second physical LAN machine",
+    "desktop persistence across origins"
+  ],
+  "result": "PASS"
+}

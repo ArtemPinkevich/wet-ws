@@ -2,98 +2,399 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>WET-WS</title>
     <link rel="stylesheet" href="/frontend/app-shell/styles.css" />
   </head>
-  <body>
-    <header>
-      <h1>WET-WS</h1>
-      <span id="control-state" role="status">Получаем состояние…</span>
-    </header>
-    <main>
-      <section class="settings" id="settings">
-        <h2>Подключения</h2>
-        <div class="side">
-          <h3>Сервер <span id="server-state">Не подключён</span></h3>
-          <label for="url">Целевой адрес</label
-          ><input id="url" placeholder="ws://…" autocomplete="off" /><button
-            id="server-action"
-            data-command
-            disabled
+  <body data-traffic="chat">
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <svg
+            class="brand-symbol"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
           >
-            Подключить сервер
+            <path
+              d="m3 7 5 10 4-10 4 10 5-10"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+          <h1 class="brand-name">WET-WS</h1>
+        </div>
+        <div class="connection-strip">
+          <label class="auto-control"
+            ><input
+              id="auto-forward"
+              type="checkbox"
+              checked=""
+              title="Общая автоматическая пересылка в обе стороны"
+            /><span>Пересылка <strong id="auto-label">…</strong></span></label
+          ><button
+            id="settings-toggle"
+            class="settings-button subtle"
+            aria-expanded="false"
+            aria-controls="settings-tray"
+            title="Настройки соединений"
+          >
+            <svg
+              class="od-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4 M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0"
+              ></path></svg
+            ><span>Соединения</span>
           </button>
         </div>
-        <div class="side">
-          <h3>Клиент <span id="client-state">Не подключён</span></h3>
-          <label for="host">Адрес привязки</label
-          ><input id="host" value="0.0.0.0" /><label for="port"
-            >Порт приёма</label
-          ><input
-            id="port"
-            type="number"
-            min="0"
-            max="65535"
-            value="8081"
-          /><label>Адрес для клиента в сети</label
-          ><output id="client-address"></output
-          ><button id="client-action" data-command disabled>
-            Начать приём
-          </button>
-          <p id="listener-state">Приём закрыт</p>
-          <button id="listener-stop" data-command hidden>
-            Остановить приём
-          </button>
+      </header>
+      <section
+        id="settings-tray"
+        class="settings-tray"
+        aria-label="Настройки соединений"
+        hidden=""
+      >
+        <div class="settings-grid">
+          <label
+            >Целевой адрес сервера<input
+              id="url"
+              placeholder="ws://…"
+              autocomplete="off" /></label
+          ><label>Адрес привязки<input id="host" value="0.0.0.0" /></label
+          ><label
+            >Порт приёма<input
+              id="port"
+              type="number"
+              min="0"
+              max="65535"
+              value="8081" /></label
+          ><label
+            >Общий подпротокол<input
+              id="protocol"
+              placeholder="Не задан"
+              autocomplete="off"
+          /></label>
         </div>
-        <label for="protocol">Общий подпротокол (необязательно)</label
-        ><input id="protocol" placeholder="Не задан" autocomplete="off" />
-        <p id="error" role="alert"></p>
+        <div class="settings-options">
+          <button id="server-action" data-command="" disabled="">
+            Подключить сервер</button
+          ><button id="client-action" data-command="" disabled="">
+            Начать приём</button
+          ><button id="listener-stop" data-command="" hidden="">
+            Остановить приём</button
+          ><span id="listener-state">Получаем состояние…</span
+          ><label>Адрес клиента <output id="client-address"></output></label
+          ><button id="settings-close" class="subtle">Закрыть</button>
+        </div>
       </section>
-      <div
-        id="splitter"
-        role="separator"
-        tabindex="0"
-        aria-label="Ширина настроек"
-        aria-orientation="vertical"
-        aria-controls="settings"
-        aria-valuemin="290"
-        aria-valuemax="720"
-        aria-valuenow="320"
-      ></div>
-      <section class="traffic">
-        <div class="chat-header">
-          <h2>Трафик</h2>
-          <button id="clear" data-command disabled>Очистить показанное</button>
-        </div>
-        <label class="forward-toggle"
-          ><input id="auto-forward" type="checkbox" disabled /> Автопересылка
-          обоих направлений</label
+      <nav class="mobile-nav" aria-label="Области рабочего стола">
+        <button data-mobile="library" aria-selected="false">Заготовки</button
+        ><button data-mobile="editor" id="mobile-editor" aria-selected="false">
+          Сообщение</button
+        ><button data-mobile="traffic" aria-selected="true">Трафик</button>
+      </nav>
+      <main
+        class="workbench"
+        id="workbench"
+        aria-label="Адаптивный рабочий стол"
+        style="--lib-width: 224px; --editor-width: 470px"
+      >
+        <aside
+          class="pane library-pane"
+          id="library-pane"
+          aria-label="Библиотека заготовок"
         >
-        <p id="forward-state" role="status">Получаем состояние пересылки…</p>
-        <div class="directions"><span>Клиент</span><span>Сервер</span></div>
-        <p id="history-notice" role="status"></p>
-        <div id="chat" aria-label="История обмена"></div>
-        <section class="composer" aria-label="Отправка собственного сообщения">
-          <label for="message-text">Собственное сообщение</label>
-          <textarea
-            id="message-text"
-            rows="6"
-            spellcheck="false"
-            aria-describedby="send-hint"
-          ></textarea>
-          <div class="send-controls">
-            <label for="message-target">Получатель</label>
-            <select id="message-target">
+          <div class="pane-head">
+            <div class="section-title">
+              <h2>Заготовки</h2>
+              <span id="template-count" class="count"></span>
+            </div>
+            <button
+              id="new-draft"
+              class="icon-button subtle"
+              title="Новый черновик"
+              aria-label="Новый черновик"
+            >
+              <svg
+                class="od-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="library-target">
+            <label for="quick-target">Кому →</label
+            ><select id="quick-target" aria-label="Адресат быстрой отправки">
               <option value="server">Сервер</option>
               <option value="client">Клиент</option>
             </select>
-            <button id="send-message" disabled>Отправить сообщение</button>
           </div>
-          <p id="send-hint" role="status"></p>
+          <div class="template-list" id="template-list"></div>
+          <p class="library-note" id="library-note" hidden=""></p>
+        </aside>
+        <div
+          id="library-split"
+          class="separator"
+          tabindex="0"
+          role="separator"
+          aria-orientation="vertical"
+          aria-label="Ширина библиотеки: перетаскивайте или используйте стрелки"
+          aria-controls="library-pane"
+          aria-valuenow="224"
+          aria-valuemin="188"
+          aria-valuemax="542"
+        ></div>
+        <section
+          class="pane editor-pane"
+          id="editor-pane"
+          aria-label="Рабочая область сообщения"
+        >
+          <div class="editor-rail">
+            <button
+              id="restore-editor"
+              class="icon-button subtle"
+              aria-label="Восстановить редактор с прежней шириной"
+              title="Восстановить редактор"
+            >
+              <svg
+                class="od-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M9 4v16M4 4h16v16H4zM13 9l3 3-3 3"></path>
+              </svg></button
+            ><span class="rail-label">Сообщение</span
+            ><span
+              class="dirty-dot"
+              id="rail-dirty"
+              title="Есть несохранённые изменения"
+              hidden=""
+            ></span>
+          </div>
+          <div class="editor-full">
+            <div class="pane-head">
+              <div class="editor-heading od-field">
+                <h2 id="editor-title" class="editor-title">Новый черновик</h2>
+                <span id="editor-subtitle" class="editor-subtitle"
+                  >Исходные сообщения не изменяются</span
+                >
+              </div>
+              <div class="editor-head-actions">
+                <button
+                  id="save-toggle"
+                  class="icon-button subtle"
+                  aria-label="Сохранить в заготовки"
+                  title="Сохранить в заготовки"
+                >
+                  <svg
+                    class="od-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 3h12v18l-6-4-6 4V3Z"></path>
+                  </svg></button
+                ><button
+                  id="collapse-editor"
+                  class="icon-button subtle"
+                  aria-label="Свернуть редактор, отдать место трафику"
+                  title="Свернуть редактор"
+                >
+                  <svg
+                    class="od-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 4v16M4 4h16v16H4zM16 9l-3 3 3 3"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="editor-tools">
+              <span class="editor-mode" id="editor-mode">Черновик</span
+              ><span class="micro" id="copy-note" hidden=""
+                >Оригинал в истории не меняется</span
+              >
+            </div>
+            <div class="editor-code">
+              <div class="line-gutter" aria-hidden="true">
+                <pre id="line-numbers" style="transform: translateY(0px)">
+1</pre>
+              </div>
+              <div class="code-layers">
+                <pre id="highlight" aria-hidden="true"></pre>
+                <textarea
+                  id="message-text"
+                  wrap="off"
+                  spellcheck="false"
+                  autocapitalize="off"
+                  autocomplete="off"
+                  aria-label="Редактируемый literal JSON или текст"
+                ></textarea>
+              </div>
+            </div>
+            <div class="editor-status">
+              <span id="cursor-status">Ln 37, Col 2</span
+              ><span id="text-size">0 Б</span><span>UTF-8 · literal</span>
+            </div>
+            <form class="save-form" id="save-form" hidden="">
+              <label for="template-name">Название новой заготовки</label
+              ><input
+                id="template-name"
+                placeholder="Например, Проверка сборки"
+                required=""
+              /><button class="primary" type="submit" id="save-template">
+                Сохранить</button
+              ><button
+                class="cancel-save subtle"
+                type="button"
+                id="cancel-save"
+              >
+                Отмена
+              </button>
+              <p class="save-error" id="save-error" role="alert"></p>
+            </form>
+            <div class="send-area">
+              <div class="send-line">
+                <label class="send-target" for="editor-target"
+                  >Кому<select id="message-target">
+                    <option value="server">Сервер</option>
+                    <option value="client">Клиент</option>
+                  </select></label
+                ><button
+                  id="send-message"
+                  class="primary"
+                  title="Новая ручная запись → Сервер"
+                >
+                  <svg
+                    class="od-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="m4 4 17 8-17 8 3-8-3-8Zm3 8h14"></path></svg
+                  >Отправить
+                </button>
+              </div>
+              <p class="send-hint" id="send-hint" hidden=""></p>
+            </div>
+          </div>
         </section>
-      </section>
-    </main>
+        <div
+          id="editor-split"
+          class="separator"
+          tabindex="0"
+          role="separator"
+          aria-orientation="vertical"
+          aria-label="Ширина редактора и трафика: перетаскивайте или используйте стрелки"
+          aria-controls="editor-pane traffic-pane"
+          aria-valuenow="470"
+          aria-valuemin="360"
+          aria-valuemax="678"
+        ></div>
+        <section
+          class="pane traffic-pane chat mobile-active"
+          id="traffic-pane"
+          aria-label="Трафик в формате диалога"
+        >
+          <span id="traffic-count" hidden="" aria-hidden="true">13</span>
+          <div class="chat-sides" aria-label="Стороны диалога">
+            <span
+              class="state"
+              id="client-state"
+              aria-live="polite"
+              aria-label="Клиент · подключён"
+              title="Клиент · подключён"
+              >Клиент · Получаем состояние…</span
+            ><button id="clear" data-command="" class="subtle" disabled="">
+              Очистить</button
+            ><span
+              class="state"
+              id="server-state"
+              aria-live="polite"
+              aria-label="Сервер · подключён"
+              title="Сервер · подключён"
+              >Сервер · Получаем состояние…</span
+            >
+          </div>
+          <p id="history-notice" role="status"></p>
+          <div id="chat" class="traffic-scroll">
+            <p class="traffic-start">История обмена</p>
+            <div class="traffic-list" id="traffic-list"></div>
+          </div>
+          <div class="new-events" id="new-events">
+            <span id="new-count">История пуста</span
+            ><button id="latest">
+              К последним
+              <svg
+                class="od-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+          </div>
+        </section>
+      </main>
+      <footer class="statusbar">
+        <span id="feedback" class="feedback" role="status"
+          >Выбор сообщения не отправляет его</span
+        ><span id="error" role="alert"></span
+        ><span id="control-state" role="status">Получаем состояние…</span
+        ><span id="forward-state" class="sr-only" role="status"></span>
+      </footer>
+    </div>
+    <dialog id="dirty-dialog" aria-labelledby="dirty-heading">
+      <h2 id="dirty-heading">Открыть другой текст?</h2>
+      <p>
+        В черновике есть несохранённые правки. Открытие заменит его содержимое.
+        Адресат останется прежним.
+      </p>
+      <div class="dialog-actions">
+        <button id="dirty-cancel">Отмена</button
+        ><button id="dirty-confirm" class="primary">Открыть</button>
+      </div>
+    </dialog>
     <script type="module" src="/frontend/app-shell/app.js"></script>
   </body>
 </html>

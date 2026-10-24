@@ -55,6 +55,7 @@ try {
     .locator('#control-state')
     .filter({ hasText: 'синхронизирован' })
     .waitFor();
+  await page.locator('#settings-toggle').click();
   await page
     .locator('#host')
     .fill(process.env.DELIVERY_URL ? '0.0.0.0' : '127.0.0.1');
@@ -73,7 +74,7 @@ try {
   await page.locator('#server-action').click();
   await page
     .locator('#server-state')
-    .filter({ hasText: /^Подключён$/ })
+    .filter({ hasText: /^Сервер · Подключён$/ })
     .waitFor();
   await page.locator('#client-action').click();
   await page.locator('#client-address').filter({ hasText: 'ws://' }).waitFor();
@@ -82,7 +83,7 @@ try {
   await second.goto(uiUrl);
   await second
     .locator('#client-state')
-    .filter({ hasText: /^Подключён$/ })
+    .filter({ hasText: /^Клиент · Подключён$/ })
     .waitFor();
   const text = '<b>Это текст</b> 🙂\nвторая строка';
   const reply = once(external, 'message');
@@ -99,13 +100,13 @@ try {
     assert.equal(await tab.locator('#chat b').count(), 0);
     assert.equal(await tab.locator('#protocol').getAttribute('readonly'), '');
   }
-  const splitter = page.locator('#splitter');
+  const splitter = page.locator('#library-split');
   const width = Number(await splitter.getAttribute('aria-valuenow'));
   await splitter.focus();
   await splitter.press('ArrowRight');
   assert.equal(
     Number(await splitter.getAttribute('aria-valuenow')),
-    width + 10,
+    width + 16,
   );
   const longText = Array.from(
     { length: 12 },
@@ -116,14 +117,16 @@ try {
   await longReply;
   const expand = page
     .locator('article.client')
-    .filter({ hasText: longText })
-    .getByRole('button');
+    .filter({ hasText: 'длинная строка 0' })
+    .locator('[data-expand]');
   await expand.focus();
   await expand.press('Enter');
-  await page.locator('article.client pre.expanded').waitFor();
+  await page.locator('article.client.expanded pre').waitFor();
   assert.equal(
-    await page.evaluate(() => document.activeElement.textContent),
-    'Свернуть ↑',
+    await page.evaluate(() =>
+      document.activeElement.getAttribute('aria-label'),
+    ),
+    'Свернуть сообщение',
   );
   await page.reload();
   await page.waitForFunction(
@@ -145,7 +148,7 @@ try {
       .waitFor();
     assert.equal(
       await page.locator('#client-state').textContent(),
-      'Подключён',
+      'Клиент · Подключён',
     );
   }
   await second.locator('#clear').click();
@@ -178,12 +181,16 @@ try {
     path: resolve(checks, 'narrow.png'),
     fullPage: true,
   });
+  await second.locator('#settings-toggle').click();
   await second.locator('#server-action').click();
   await page
     .locator('#server-state')
-    .filter({ hasText: /^Не подключён$/ })
+    .filter({ hasText: /^Сервер · Не подключён$/ })
     .waitFor();
-  assert.equal(await page.locator('#client-state').textContent(), 'Подключён');
+  assert.equal(
+    await page.locator('#client-state').textContent(),
+    'Клиент · Подключён',
+  );
   assert.deepEqual(errors, []);
   console.log(
     `PASS: ${desktopMode ? 'packaged Electron' : 'browser'} echo, literal text, two interfaces, reload, shared clear, independent disconnect, narrow viewport.`,
