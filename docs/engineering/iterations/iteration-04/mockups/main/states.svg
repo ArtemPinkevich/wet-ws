@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="780" viewBox="0 0 1020 780"><title>WET-WS · alternate interaction states</title><desc>Iteration 04 proposal derived from Iteration 03 Concept A: left workspace, right chat, inline connection settings. Not implemented or accepted.</desc><style>text{font-family:'Segoe UI',Arial,sans-serif}.mono{font-family:Consolas,'Courier New',monospace}</style>
+<rect x="0" y="0" width="1020" height="780" rx="0" fill="#f5f7fa" stroke="#f5f7fa"/>
+<text x="28" y="39" font-size="21" fill="#15264a" font-weight="700">Состояния рабочей области</text>
+<rect x="28" y="60" width="964" height="116" rx="8" fill="#ffffff" stroke="#d9e2ef"/>
+<text x="44" y="88" font-size="14" fill="#203352" font-weight="600">Заменить изменённый черновик?</text>
+<text x="44" y="114" font-size="13" fill="#71839c" font-weight="400">Исходная запись останется прежней. Получатель не изменится.</text>
+<rect x="44" y="129" width="112" height="36" rx="6" fill="#ffffff" stroke="#cfd8e5"/>
+<text x="58" y="152" font-size="13" fill="#253b5b" font-weight="600">Отмена</text>
+<rect x="170" y="129" width="174" height="36" rx="6" fill="#1c5965" stroke="#1c5965"/>
+<text x="184" y="152" font-size="13" fill="#ffffff" font-weight="600">Заменить текст</text>
+<rect x="28" y="190" width="964" height="116" rx="8" fill="#ffffff" stroke="#d9e2ef"/>
+<text x="44" y="218" font-size="14" fill="#203352" font-weight="600">Локальное хранилище недоступно</text>
+<text x="44" y="244" font-size="13" fill="#71839c" font-weight="400">Редактор и отправка доступны. Сохранение временно недоступно.</text>
+<rect x="28" y="320" width="964" height="116" rx="8" fill="#fff8f4" stroke="#e8cbbf"/>
+<text x="44" y="348" font-size="14" fill="#a85639" font-weight="600">Не удалось сохранить</text>
+<text x="44" y="374" font-size="13" fill="#71839c" font-weight="400">Текст и прежние заготовки сохранены. Повтор — явным действием.</text>
+<rect x="28" y="450" width="964" height="116" rx="8" fill="#ffffff" stroke="#d9e2ef"/>
+<text x="44" y="478" font-size="14" fill="#203352" font-weight="600">Связь с сервисом потеряна</text>
+<text x="44" y="504" font-size="13" fill="#71839c" font-weight="400">Отправка недоступна до восстановления связи. Локальные заготовки остаются доступны.</text>
+<text x="28" y="759" font-size="12" fill="#8290a4" font-weight="400">Фрагменты разных состояний, не отдельные экраны приложения.</text>
+<rect x="28" y="580" width="964" height="140" rx="8" fill="#ffffff" stroke="#d9e2ef"/><text x="44" y="608" font-size="14" fill="#203352" font-weight="600">Достигнут лимит: 20 / 20</text><text x="44" y="634" font-size="13" fill="#71839c">Новая заготовка не добавляется. Существующие можно загрузить в редактор.</text><rect x="44" y="652" width="194" height="36" rx="6" fill="#f1f3f6" stroke="#e0e5ed"/><text x="58" y="676" font-size="13" fill="#94a1b4">Сохранить новую</text></svg>

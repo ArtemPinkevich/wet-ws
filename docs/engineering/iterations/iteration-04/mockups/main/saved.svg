@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><title>WET-WS · Saved packets list open in left workspace</title><desc>Iteration 04 proposal derived from Iteration 03 Concept A: left workspace, right chat, inline connection settings. Not implemented or accepted.</desc><style>text{font-family:'Segoe UI',Arial,sans-serif}.mono{font-family:Consolas,'Courier New',monospace}</style>
+<rect x="0" y="0" width="1920" height="1080" rx="0" fill="#f5f7fa" stroke="#f5f7fa"/>
+<rect x="0" y="0" width="1920" height="64" rx="0" fill="#ffffff" stroke="#e1e7ef"/>
+<text x="24" y="41" font-size="23" fill="#15264a" font-weight="700">WET-WS</text>
+<path d="M132 21L132 45" stroke="#cbd4e0"/>
+<text x="152" y="40" font-size="15" fill="#71809a" font-weight="400">WebSocket-трансивер</text>
+<text x="1162" y="39" font-size="13" fill="#25845b" font-weight="400">● Клиент подключён</text>
+<text x="1350" y="39" font-size="13" fill="#25845b" font-weight="400">● Сервер подключён</text>
+<rect x="1542" y="16" width="164" height="36" rx="6" fill="#ffffff" stroke="#cfd8e5"/>
+<text x="1556" y="39" font-size="13" fill="#253b5b" font-weight="600">Подключения  ▴</text>
+<rect x="1722" y="16" width="174" height="36" rx="6" fill="#e1f6ef" stroke="#bce4d7"/>
+<text x="1737" y="39" font-size="13" fill="#235e56" font-weight="600">☑ Автопересылка: вкл</text>
+<rect x="24" y="80" width="1872" height="160" rx="8" fill="#ffffff" stroke="#e0e6ef"/>
+<path d="M956 96L956 224" stroke="#e6ebf2"/>
+<text x="44" y="111" font-size="15" fill="#203352" font-weight="600">Сервер</text>
+<text x="790" y="111" font-size="12" fill="#25845b" font-weight="400">● Подключён</text>
+<text x="44" y="138" font-size="12" fill="#6b7d95" font-weight="400">Целевой WebSocket-адрес</text>
+<rect x="44" y="149" width="548" height="36" rx="6" fill="#fafbfd" stroke="#dbe3ee"/>
+<text x="56" y="172" font-size="13" fill="#203352" font-weight="400">ws://127.0.0.1:9000</text>
+<rect x="608" y="149" width="148" height="36" rx="6" fill="#ffffff" stroke="#cfd8e5"/>
+<text x="622" y="172" font-size="13" fill="#253b5b" font-weight="600">Отключить</text>
+<text x="774" y="138" font-size="12" fill="#6b7d95" font-weight="400">Подпротокол</text>
+<rect x="774" y="149" width="160" height="36" rx="6" fill="#fafbfd" stroke="#dbe3ee"/>
+<text x="786" y="172" font-size="13" fill="#203352" font-weight="400">Не задан</text>
+<text x="44" y="217" font-size="12" fill="#8290a4" font-weight="400">Подключение к целевому серверу</text>
+<text x="980" y="111" font-size="15" fill="#203352" font-weight="600">Приём клиента</text>
+<text x="1720" y="111" font-size="12" fill="#25845b" font-weight="400">● Подключён</text>
+<text x="980" y="138" font-size="12" fill="#6b7d95" font-weight="400">Адрес привязки</text>
+<rect x="980" y="149" width="208" height="36" rx="6" fill="#fafbfd" stroke="#dbe3ee"/>
+<text x="992" y="172" font-size="13" fill="#203352" font-weight="400">127.0.0.1</text>
+<text x="1204" y="138" font-size="12" fill="#6b7d95" font-weight="400">Порт</text>
+<rect x="1204" y="149" width="100" height="36" rx="6" fill="#fafbfd" stroke="#dbe3ee"/>
+<text x="1216" y="172" font-size="13" fill="#203352" font-weight="400">8081</text>
+<rect x="1320" y="149" width="206" height="36" rx="6" fill="#ffffff" stroke="#cfd8e5"/>
+<text x="1334" y="172" font-size="13" fill="#253b5b" font-weight="600">Отключить клиента</text>
+<rect x="1542" y="149" width="330" height="36" rx="6" fill="#ffffff" stroke="#cfd8e5"/>
+<text x="1556" y="172" font-size="13" fill="#253b5b" font-weight="600">Остановить приём новых клиентов</text>
+<text x="980" y="217" font-size="13" fill="#536c8b" font-weight="400">Адрес клиента: ws://127.0.0.1:8081</text>
+<text x="1538" y="217" font-size="12" fill="#25845b" font-weight="400">Приём новых клиентов открыт</text>
+<rect x="24" y="258" width="1024" height="798" rx="8" fill="#ffffff" stroke="#e0e6ef"/>
+<rect x="1072" y="258" width="824" height="798" rx="8" fill="#ffffff" stroke="#e0e6ef"/>
+<path d="M1060 610L1060 700" stroke="#d5deea"/>
+<text x="44" y="294" font-size="21" fill="#15264a" font-weight="700">Рабочая область</text>
+<rect x="44" y="312" width="154" height="36" rx="6" fill="#ffffff" stroke="#dbe3ee"/><text x="76" y="335" font-size="14" fill="#263f61" font-weight="600">Редактор</text><rect x="208" y="312" width="262" height="36" rx="6" fill="#edf3fc" stroke="#bfd0e8"/><text x="226" y="335" font-size="14" fill="#263f61" font-weight="600">Сохранённые пакеты · 4 / 20</text>
+<text x="44" y="378" font-size="14" fill="#536d8c" font-weight="600">Выберите сохранённый пакет</text>
+<rect x="44" y="394" width="984" height="84" rx="7" fill="#f3f7fc" stroke="#c2d2e9"/>
+<text x="64" y="423" font-size="15" fill="#253d5c" font-weight="600">Проверка заказа</text>
+<text x="64" y="452" font-size="12" fill="#8898ad" font-weight="400">#3a4c</text>
+<text x="344" y="439" class="mono" font-size="12" fill="#627994">{"type":"snapshot","session":"demo-7","orders":[…]}</text>
+<g transform="translate(982,422)"><title>Открыть копию в редакторе</title><rect width="28" height="28" rx="5" fill="#fff" stroke="#cfdae8"/><path d="M7 14h14m-5-5l5 5-5 5" fill="none" stroke="#587598" stroke-width="1.6" stroke-linecap="round"/></g>
+<rect x="44" y="494" width="984" height="84" rx="7" fill="#fff" stroke="#e0e6ef"/>
+<text x="64" y="523" font-size="15" fill="#253d5c" font-weight="600">Подписка на заказы</text>
+<text x="64" y="552" font-size="12" fill="#8898ad" font-weight="400">#72bd</text>
+<text x="344" y="539" class="mono" font-size="12" fill="#627994">{"type":"subscribe","channel":"orders"}</text>
+<g transform="translate(982,522)"><title>Открыть копию в редакторе</title><rect width="28" height="28" rx="5" fill="#fff" stroke="#cfdae8"/><path d="M7 14h14m-5-5l5 5-5 5" fill="none" stroke="#587598" stroke-width="1.6" stroke-linecap="round"/></g>
+<rect x="44" y="594" width="984" height="84" rx="7" fill="#fff" stroke="#e0e6ef"/>
+<text x="64" y="623" font-size="15" fill="#253d5c" font-weight="600">Проверка остатков</text>
+<text x="64" y="652" font-size="12" fill="#8898ad" font-weight="400">#e901</text>
+<text x="344" y="639" class="mono" font-size="12" fill="#627994">{"type":"subscribe","channel":"inventory"}</text>
+<g transform="translate(982,622)"><title>Открыть копию в редакторе</title><rect width="28" height="28" rx="5" fill="#fff" stroke="#cfdae8"/><path d="M7 14h14m-5-5l5 5-5 5" fill="none" stroke="#587598" stroke-width="1.6" stroke-linecap="round"/></g>
+<rect x="44" y="694" width="984" height="84" rx="7" fill="#fff" stroke="#e0e6ef"/>
+<text x="64" y="723" font-size="15" fill="#253d5c" font-weight="600">Heartbeat</text>
+<text x="64" y="752" font-size="12" fill="#8898ad" font-weight="400">#18fa</text>
+<text x="344" y="739" class="mono" font-size="12" fill="#627994">{"type":"heartbeat","seq":87}</text>
+<g transform="translate(982,722)"><title>Открыть копию в редакторе</title><rect width="28" height="28" rx="5" fill="#fff" stroke="#cfdae8"/><path d="M7 14h14m-5-5l5 5-5 5" fill="none" stroke="#587598" stroke-width="1.6" stroke-linecap="round"/></g>
+<text x="44" y="830" font-size="13" fill="#6f839f" font-weight="400">Выбор откроет копию пакета в редакторе. Отправка — отдельным действием.</text>
+<rect x="44" y="965" width="984" height="66" rx="7" fill="#f8fafc" stroke="#e4eaf2"/>
+<text x="62" y="992" font-size="13" fill="#3f6386" font-weight="600">4 из 20 заготовок</text>
+<text x="62" y="1015" font-size="12" fill="#8495ac" font-weight="400">Этот список хранится локально в текущем профиле браузера.</text>
+<text x="1092" y="294" font-size="21" fill="#15264a" font-weight="700">Трафик</text>
+<text x="1198" y="294" font-size="13" fill="#8290a4" font-weight="400">Живой обмен</text>
+<rect x="1740" y="276" width="136" height="32" rx="6" fill="#ffffff" stroke="#cfd8e5"/>
+<text x="1754" y="297" font-size="13" fill="#253b5b" font-weight="600">Очистить</text>
+<text x="1092" y="331" font-size="13" fill="#377e7c" font-weight="400">Клиент</text>
+<text x="1822" y="331" font-size="13" fill="#6470a5" font-weight="400">Сервер</text>
+<rect x="1092" y="348" width="600" height="124" rx="8" fill="#eff9f7" stroke="#d5ece6"/>
+<text x="1108" y="373" font-size="14" fill="#203352" font-weight="600">#241</text>
+<text x="1572" y="372" font-size="11" fill="#8491a7" font-weight="400">11:28:26</text>
+<g transform="translate(1652,358)"><title>Загрузить копию текста в редактор</title><rect width="28" height="28" rx="5" fill="#ffffff" fill-opacity="0.7" stroke="#d1dce9"/><path d="M7 21l1-5L18 6l4 4-10 10zM15 9l4 4M7 21l5-1" fill="none" stroke="#5d7592" stroke-width="1.3" stroke-linejoin="round"/></g>
+<text x="1108" y="398" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">{</text>
+<text x="1108" y="417" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">  "type": "subscribe", "channel": "orders"</text>
+<text x="1108" y="436" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">}</text>
+<text x="1108" y="460" font-size="10" fill="#8b98ac" font-weight="400">Передано на отправку</text>
+<rect x="1276" y="484" width="600" height="184" rx="8" fill="#f3f5ff" stroke="#6683d2"/>
+<text x="1292" y="509" font-size="14" fill="#203352" font-weight="600">#242</text>
+<text x="1756" y="508" font-size="11" fill="#8491a7" font-weight="400">11:28:26</text>
+<g transform="translate(1836,494)"><title>Загрузить копию текста в редактор</title><rect width="28" height="28" rx="5" fill="#ffffff" fill-opacity="0.7" stroke="#d1dce9"/><path d="M7 21l1-5L18 6l4 4-10 10zM15 9l4 4M7 21l5-1" fill="none" stroke="#5d7592" stroke-width="1.3" stroke-linejoin="round"/></g>
+<text x="1292" y="534" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">{</text>
+<text x="1292" y="553" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">  "type": "snapshot",</text>
+<text x="1292" y="572" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">  "session": "demo-7",</text>
+<text x="1292" y="591" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">  "orders": [ … ]</text>
+<text x="1292" y="610" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">}</text>
+<text x="1292" y="631" font-size="11" fill="#8a97ad" font-weight="400">… ещё 184 строки в исходном сообщении</text>
+<text x="1292" y="656" font-size="10" fill="#8b98ac" font-weight="400">Передано на отправку</text>
+<rect x="1276" y="680" width="600" height="104" rx="8" fill="#f3f5ff" stroke="#dce3f7"/>
+<text x="1292" y="705" font-size="14" fill="#203352" font-weight="600">#243</text>
+<text x="1756" y="704" font-size="11" fill="#8491a7" font-weight="400">11:28:27</text>
+<g transform="translate(1836,690)"><title>Загрузить копию текста в редактор</title><rect width="28" height="28" rx="5" fill="#ffffff" fill-opacity="0.7" stroke="#d1dce9"/><path d="M7 21l1-5L18 6l4 4-10 10zM15 9l4 4M7 21l5-1" fill="none" stroke="#5d7592" stroke-width="1.3" stroke-linejoin="round"/></g>
+<text x="1292" y="730" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">{ "type": "heartbeat", "seq": 87 }</text>
+<text x="1292" y="772" font-size="10" fill="#8b98ac" font-weight="400">Передано на отправку</text>
+<rect x="1092" y="796" width="600" height="114" rx="8" fill="#eff9f7" stroke="#d5ece6"/>
+<text x="1108" y="821" font-size="14" fill="#203352" font-weight="600">#244</text>
+<text x="1176" y="821" font-size="12" fill="#a87323" font-weight="400">✎ Вручную → Сервер</text>
+<text x="1572" y="820" font-size="11" fill="#8491a7" font-weight="400">11:28:28</text>
+<g transform="translate(1652,806)"><title>Загрузить копию текста в редактор</title><rect width="28" height="28" rx="5" fill="#ffffff" fill-opacity="0.7" stroke="#d1dce9"/><path d="M7 21l1-5L18 6l4 4-10 10zM15 9l4 4M7 21l5-1" fill="none" stroke="#5d7592" stroke-width="1.3" stroke-linejoin="round"/></g>
+<text x="1108" y="846" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">{</text>
+<text x="1108" y="865" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">  "type": "subscribe", "channel": "inventory"</text>
+<text x="1108" y="884" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">}</text>
+<text x="1108" y="898" font-size="10" fill="#8b98ac" font-weight="400">Передано на отправку</text>
+<rect x="1276" y="922" width="600" height="114" rx="8" fill="#f3f5ff" stroke="#dce3f7"/>
+<text x="1292" y="947" font-size="14" fill="#203352" font-weight="600">#245</text>
+<text x="1756" y="946" font-size="11" fill="#8491a7" font-weight="400">11:28:28</text>
+<g transform="translate(1836,932)"><title>Загрузить копию текста в редактор</title><rect width="28" height="28" rx="5" fill="#ffffff" fill-opacity="0.7" stroke="#d1dce9"/><path d="M7 21l1-5L18 6l4 4-10 10zM15 9l4 4M7 21l5-1" fill="none" stroke="#5d7592" stroke-width="1.3" stroke-linejoin="round"/></g>
+<text x="1292" y="972" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">{</text>
+<text x="1292" y="991" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">  "type": "inventory", "available": 128</text>
+<text x="1292" y="1010" class="mono" font-size="13" fill="#2b3b54" xml:space="preserve">}</text>
+<text x="1292" y="1024" font-size="10" fill="#8b98ac" font-weight="400">Передано на отправку</text>
+<rect x="1888" y="345" width="3" height="600" rx="2" fill="#eef1f5" stroke="#eef1f5"/>
+<rect x="1888" y="902" width="3" height="123" rx="2" fill="#cbd5e2" stroke="#cbd5e2"/>
+</svg>

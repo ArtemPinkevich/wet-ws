@@ -16,6 +16,7 @@ export class History {
     };
     if (Buffer.byteLength(JSON.stringify(entry), 'utf8') > this.maxBytes) {
       entry.text = `[Содержимое не сохранено: ${Buffer.byteLength(entry.text, 'utf8')} байт]`;
+      entry.payloadUnavailable = true;
     }
     this.entries.push(entry);
     return { entry, removed: this.trim() };

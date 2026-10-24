@@ -4,7 +4,9 @@
 
 ## System purpose and boundaries
 
-WET-WS принимает внешнего WebSocket-клиента, отдельно подключается к внешнему серверу, пересылает новые текстовые сообщения при готовом получателе и показывает обмен. В систему входят общий UI, backend и runtime Node.js/Electron; внешние клиент и сервер находятся за её границей. Постоянного хранилища и базы данных нет.
+Delta Iteration 04 (2026-10-24): ниже отражены реализованные и проверенные изменения исходников по согласованному чат-прототипу. Согласование прототипа и технические проверки не заменяют приёмку работающего приложения: она пока ожидается; canonical UI-свидетельства прежней принятой версии не заменены. Источник ревизии, gates и verification — [Context Pack 04](../iterations/iteration-04/context-pack.md).
+
+WET-WS принимает внешнего WebSocket-клиента, отдельно подключается к внешнему серверу, пересылает новые текстовые сообщения при готовом получателе и показывает обмен. В систему входят общий UI, backend и runtime Node.js/Electron; внешние клиент и сервер находятся за её границей. Backend базы данных и постоянного хранилища не имеет; локальные заготовки принадлежат browser localStorage.
 
 ## Main components and physical structure
 
@@ -22,6 +24,8 @@ WET-WS принимает внешнего WebSocket-клиента, отдел�
 | Connection UI | frontend/connection-ui | Поля, состояния сторон и действия подключения |
 | Message UI | frontend/message-ui | Локальный редактор/адресат, отображение общего autoForward, намерения отправки и переключения |
 | Chat UI | frontend/chat-ui | Отрисовка истории, показанные ID, раскрытие и намерение очистки |
+| Library UI | frontend/library-ui | Локальные именованные заготовки, localStorage/20, ошибки хранения, загрузка копии и явная отправка |
+| Workbench UI | frontend/workbench-ui | Ширины, сворачивание/восстановление редактора, переключение областей узкого окна |
 | Control Client | frontend/control-client | Браузерный служебный WS и восстановление связи |
 | Runtime | runtime | Composition root, HTTP-ресурсы, связывание реализаций и запуск Node.js/Electron |
 | Shared | shared | Общие метаданные запросов и небольшие чистые guards в contracts.ts |
@@ -29,6 +33,10 @@ WET-WS принимает внешнего WebSocket-клиента, отдел�
 Runtime создаёт Connection и передаёт его Application через ConnectionPort; Control получает Application. Application использует History и Message Flow, не frontend. Message Flow зависит от SendTarget, не от библиотеки ws. Backend владеет состоянием; интерфейсы хранят его синхронизированное представление. История и незавершённая отправка независимы.
 
 App Shell связывает App Model, Connection UI, Chat UI, Message UI и Control Client. Message UI сохраняет редактор и адресата локально в DOM без перезаписи при обновлениях истории; reload сбрасывает черновик. Application владеет общим autoForward (по умолчанию true), Message Flow — служебными командами send/set-auto-forward и транспортной отправкой; History не становится очередью. UI-модули обращаются к модели, не к backend-реализациям; App Model не импортирует DOM/WS, события транспорта получает через внедрённый интерфейс.
+
+App Shell также связывает Library UI и Workbench UI; `frontend/ui.ts` содержит общие DOM/экранирование/декоративную подсветку. Библиотека слева, редактор в центре, чат справа. Layout хранит ширины и состояние сворачивания в памяти; narrow переключает области. Message UI владеет исходным текстом отдельно от textarea: браузер показывает LF, но отправка/сохранение сохраняют исходные CR/CRLF в нетронутых участках. Загрузка — копия, dirty replacement подтверждается; новые события, очистка и вытеснение источника не меняют черновик. Chat UI обновляет карточки по ID и не пересоздаёт редактор; раскрытие/pretty JSON не меняет payload. Повтор карточки захватывает исходного адресата, библиотека и редактор используют общий видимый локальный target.
+
+Library UI хранит `wet-ws.templates.v1`: `{version:1,items:[{id,name,text}]}`. Максимум 20, имена непустые по trim, одинаковые имена допустимы. При quota/запрете/повреждении нет успеха и молчаливого сброса. Save/load независимы от backend; storage events обновляют набор между вкладками, запись перечитывает актуальный набор, но конкурентный read-modify-write остаётся last-write-wins, без merge-гарантии. Привязка к профилю/origin и исключение Electron описаны в [TB-002](../technical-backlog.md#tb-002--сохранность-localstorage-при-перезапуске-electron). Нового backend API/IPC для заготовок нет.
 
 Client Acceptor, Server Connector и Pair Transport остаются операциями небольшого Connection, без отдельных классов/каталогов. History View, Rendered Tracker и Clear Action реализованы внутри Chat UI. Фиктивные адаптеры ws не создаются.
 
@@ -88,6 +96,10 @@ History хранит наблюдения, не очередь. Message Flow в�
 ```mermaid
 flowchart TB
     SH["App Shell"] -->|"Создаёт и связывает"| CU["Connection UI"]
+    SH -->|"Создаёт и связывает"| LU["Library UI / localStorage"]
+    SH -->|"Создаёт"| W["Workbench UI / layout"]
+    LU -->|"Загрузить копию"| MU
+    LU -->|"Явный sendMessage"| M
     SH -->|"Создаёт и связывает"| CH["Chat UI"]
     SH -->|"Создаёт и связывает"| MU["Message UI"]
     MU -->|"sendMessage / setAutoForward"| M
@@ -176,6 +188,8 @@ Frontend Control Client проверяет snapshot/change/result/error до т�
 Решения и результаты проверки этой дельты находятся в [Context Pack 02](../iterations/iteration-02/context-pack.md#организация-служебных-контрактов--review-use-with-changes-2026-10-16). Дельта входит в принятую автором Iteration 2.
 
 Application snapshot/change содержит autoForward:boolean. `send {target:client|server,text:string}` и `set-auto-forward {enabled:boolean}` используют общие id/instance; некорректная форма отклоняется Control, неготовый адресат/старый instance — Application. `result ok` означает принятие/начало попытки; результат SendTarget отражён в истории, не доказывает обработку получателем. Для `side:user` History требует target; внешние записи сохраняют client/server и literal text. Смешанные версии UI/backend не поддерживаются. Источник delta и проверок — [Context Pack 03](../iterations/iteration-03/context-pack.md).
+
+History.Entry допускает `payloadUnavailable:true`: History устанавливает флаг, когда бюджет требует заменить исходник заглушкой. Единственный owner/guard — `backend/history/history.protocol.ts`; App Model получает его через общий snapshot/change. Chat UI показывает причину и отключает открытие/повтор; совпадающий literal-текст без флага остаётся доступен. Runtime allowlist расширен только нужными frontend-модулями. Send, set-auto-forward и semantics reconnect не менялись; смешанные версии UI/backend не поддерживаются.
 
 ## Related documentation
 

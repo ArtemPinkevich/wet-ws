@@ -10,6 +10,8 @@ export interface Entry {
   text: string;
   status: string;
   reason?: string;
+  /** The original payload was not retained; text is a display notice only. */
+  payloadUnavailable?: true;
 }
 export type EntryChange = Entry & { change: 'added' | 'updated' };
 export type ClearHistoryCommand = RequestMetadata & {
@@ -35,7 +37,9 @@ export function isEntry(value: unknown): value is Entry {
       : value.target === undefined) &&
     typeof value.text === 'string' &&
     typeof value.status === 'string' &&
-    (value.reason === undefined || typeof value.reason === 'string')
+    (value.reason === undefined || typeof value.reason === 'string') &&
+    (value.payloadUnavailable === undefined ||
+      value.payloadUnavailable === true)
   );
 }
 export function isEntryChange(value: unknown): value is EntryChange {

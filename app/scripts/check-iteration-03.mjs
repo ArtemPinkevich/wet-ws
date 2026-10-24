@@ -68,13 +68,14 @@ try {
   const draft = '🙂 <b>literal</b>\n  тестовый текст  ';
   await page.locator('#message-text').fill(draft);
   assert.equal(await page.locator('#send-message').isDisabled(), true);
+  await page.locator('#settings-toggle').click();
   await page.locator('#host').fill('127.0.0.1');
   await page.locator('#port').fill('0');
   await page.locator('#url').fill(`ws://127.0.0.1:${upstream.address().port}`);
   await page.locator('#server-action').click();
   await page
     .locator('#server-state')
-    .filter({ hasText: /^Подключён$/ })
+    .filter({ hasText: /^Сервер · Подключён$/ })
     .waitFor();
   // Manual send needs only its selected recipient, before a real client exists.
   await page.locator('#send-message').click();
@@ -82,7 +83,7 @@ try {
     (value) =>
       [...document.querySelectorAll('#chat article')].some(
         (e) =>
-          e.textContent.includes('Создано вручную → Сервер') &&
+          e.querySelector('[aria-label="Создано вручную → Сервер"]') &&
           e.querySelector('pre').textContent === value,
       ),
     draft,
@@ -101,7 +102,7 @@ try {
   await once(external, 'open');
   await page
     .locator('#client-state')
-    .filter({ hasText: /^Подключён$/ })
+    .filter({ hasText: /^Клиент · Подключён$/ })
     .waitFor();
   await page.locator('#auto-forward').click();
   await second.waitForFunction(
@@ -125,7 +126,7 @@ try {
     (value) =>
       [...document.querySelectorAll('#chat article')].some(
         (e) =>
-          e.textContent.includes('Создано вручную → Клиент') &&
+          e.querySelector('[aria-label="Создано вручную → Клиент"]') &&
           e.querySelector('pre').textContent === value,
       ),
     draft,
@@ -211,6 +212,7 @@ try {
     );
   }
   await mkdir(checks, { recursive: true });
+  await page.locator('#settings-close').click();
   await page.screenshot({ path: resolve(checks, 'wide.png'), fullPage: true });
   if (desktop)
     await desktop.evaluate(({ BrowserWindow }) =>
@@ -227,10 +229,11 @@ try {
     path: resolve(checks, 'narrow.png'),
     fullPage: true,
   });
+  await second.locator('#settings-toggle').click();
   await second.locator('#server-action').click();
   await page
     .locator('#server-state')
-    .filter({ hasText: /^Не подключён$/ })
+    .filter({ hasText: /^Сервер · Не подключён$/ })
     .waitFor();
   assert.equal(await page.locator('#send-message').isDisabled(), true);
   assert.equal(await page.locator('#message-text').inputValue(), retained);

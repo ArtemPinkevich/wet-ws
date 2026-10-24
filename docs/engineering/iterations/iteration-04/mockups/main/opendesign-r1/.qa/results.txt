@@ -1,0 +1,4 @@
+registry: click/copy/edit/send/load/dirty cancel/target/offline/quota/20/20/corruption/live/scroll/eviction/clear/connections/navigation and widths 1920/1366/390 PASS
+trace: click/copy/edit/send/load/dirty cancel/target/offline/quota/20/20/corruption/live/scroll/eviction/clear/connections/navigation and widths 1920/1366/390 PASS
+document: click/copy/edit/send/load/dirty cancel/target/offline/quota/20/20/corruption/live/scroll/eviction/clear/connections/navigation and widths 1920/1366/390 PASS
+focus: click/copy/edit/send/load/dirty cancel/target/offline/quota/20/20/corruption/live/scroll/eviction/clear/connections/navigation and widths 1920/1366/390 PASS
