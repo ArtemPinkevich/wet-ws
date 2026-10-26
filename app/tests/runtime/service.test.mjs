@@ -14,6 +14,11 @@ before(async () => {
   assetsDir = await mkdtemp(join(tmpdir(), 'wet-ws-service-'));
   await mkdir(join(assetsDir, 'app-shell'));
   await mkdir(join(assetsDir, 'app-model'));
+  await mkdir(join(assetsDir, 'message-ui'));
+  await writeFile(
+    join(assetsDir, 'message-ui', 'json-syntax.js'),
+    'export const syntax = true;',
+  );
   await writeFile(
     join(assetsDir, 'app-model', 'model.js'),
     'export const model = true;',
@@ -138,6 +143,7 @@ test('HTTP serves only allowlisted resources with correct MIME and restrictive h
     ['/', 'text/html'],
     ['/ui/app.js', 'text/javascript'],
     ['/frontend/app-model/model.js', 'text/javascript'],
+    ['/frontend/message-ui/json-syntax.js', 'text/javascript'],
     ['/ui/styles.css', 'text/css'],
     ['/shared/contracts.js', 'text/javascript'],
   ]) {

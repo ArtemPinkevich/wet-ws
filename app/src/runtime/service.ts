@@ -71,6 +71,7 @@ export async function startService(
     ],
     ['/frontend/chat-ui/chat-ui.js', asset('chat-ui/chat-ui.js')],
     ['/frontend/message-ui/message-ui.js', asset('message-ui/message-ui.js')],
+    ['/frontend/message-ui/json-syntax.js', asset('message-ui/json-syntax.js')],
     ['/frontend/ui.js', asset('ui.js')],
     ['/frontend/library-ui/templates.js', asset('library-ui/templates.js')],
     ['/frontend/library-ui/library-ui.js', asset('library-ui/library-ui.js')],

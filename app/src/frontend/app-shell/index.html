@@ -196,6 +196,14 @@
             <div class="pane-head">
               <div class="editor-heading od-field">
                 <h2 id="editor-title" class="editor-title">Новый черновик</h2>
+                <span
+                  id="editor-unsaved"
+                  role="img"
+                  aria-label="Есть несохранённые изменения"
+                  title="Есть несохранённые изменения"
+                  hidden
+                  >*</span
+                >
                 <span id="editor-subtitle" class="editor-subtitle"
                   >Исходные сообщения не изменяются</span
                 >
@@ -260,13 +268,52 @@
                   autocapitalize="off"
                   autocomplete="off"
                   aria-label="Редактируемый literal JSON или текст"
+                  aria-invalid="false"
+                  aria-describedby="json-error-summary"
                 ></textarea>
               </div>
             </div>
             <div class="editor-status">
+              <label class="json-mode-label"
+                ><span class="sr-only">Режим содержимого</span
+                ><select id="json-mode" title="Режим содержимого">
+                  <option value="text">Text</option>
+                  <option value="json" selected>JSON</option>
+                </select></label
+              >
               <span id="cursor-status">Ln 37, Col 2</span
-              ><span id="text-size">0 Б</span><span>UTF-8 · literal</span>
+              ><span id="text-size">0 Б</span>
+              <button
+                id="json-status"
+                class="json-advisory"
+                aria-controls="json-details"
+                aria-expanded="false"
+                aria-disabled="true"
+              >
+                JSON · пусто
+              </button>
             </div>
+            <span id="json-error-summary" class="sr-only"></span>
+            <section
+              id="json-details"
+              aria-label="Подробности синтаксической ошибки"
+              hidden
+            >
+              <div class="json-detail-head">
+                <strong>Некорректный JSON</strong
+                ><button
+                  id="json-details-close"
+                  aria-label="Закрыть подробности"
+                >
+                  Закрыть
+                </button>
+              </div>
+              <p id="json-error-description"></p>
+              <details>
+                <summary>Сообщение парсера</summary>
+                <pre id="json-parser-message"></pre>
+              </details>
+            </section>
             <form class="save-form" id="save-form" hidden="">
               <label for="template-name">Название новой заготовки</label
               ><input

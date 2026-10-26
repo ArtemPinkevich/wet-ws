@@ -27,7 +27,8 @@
     "make:docker": "node scripts/make-docker-release.mjs",
     "check:iteration-03": "node scripts/check-iteration-03.mjs",
     "check:iteration-04": "node scripts/check-iteration-04.mjs",
-    "check:iteration-05": "node scripts/check-iteration-05.mjs"
+    "check:iteration-05": "node scripts/check-iteration-05.mjs",
+    "check:json-editor": "node tests/ui/json-editor.mjs"
   },
   "dependencies": {
     "ws": "8.22.0"

@@ -1861,6 +1861,125 @@ body[data-traffic='chat'] .template-bottom {
   overflow-wrap: anywhere;
 }
 
+/* Advisory JSON syntax feedback in the editor; payload stays literal. */
+.editor-full > .editor-tools,
+.editor-full .editor-subtitle {
+  display: none;
+}
+.editor-heading {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+#editor-unsaved {
+  flex: none;
+  font: 600 16px/1 var(--mono);
+  color: var(--warning);
+}
+.editor-status {
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+.json-mode-label {
+  display: flex;
+  flex: none;
+  align-items: center;
+}
+.json-mode-label select {
+  font-size: 12px;
+  padding: 0 4px;
+  min-height: 28px;
+  border-color: transparent;
+  background: var(--editor);
+  color: var(--text);
+  color-scheme: dark;
+}
+.json-mode-label option {
+  background: var(--editor);
+  color: var(--text);
+}
+.json-advisory {
+  margin-left: auto;
+  padding: 0 4px;
+  min-height: 24px;
+  border: 0;
+  font: 12px/1.5 var(--font);
+  color: var(--muted);
+  white-space: normal;
+  text-align: left;
+}
+.json-advisory.json-invalid {
+  color: var(--warning);
+}
+.json-advisory[aria-disabled='true'] {
+  cursor: default;
+}
+.gutter-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 24px;
+}
+.gutter-line b {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font: 700 12px/24px var(--mono);
+}
+.json-error-line {
+  color: var(--warning);
+  background: color-mix(in srgb, var(--warning) 6%, transparent);
+}
+#json-details {
+  flex: none;
+  max-height: 180px;
+  overflow: auto;
+  padding: 12px;
+  border-block: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 12px;
+}
+.json-detail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+#json-details p {
+  line-height: 1.5;
+}
+#json-details details {
+  margin-top: 8px;
+}
+#json-details summary {
+  cursor: pointer;
+}
+#json-parser-message {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: 12px/1.5 var(--mono);
+  margin-top: 8px;
+}
+@media (max-width: 960px) {
+  .editor-full {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+@media (pointer: coarse), (max-width: 480px) {
+  .json-mode-label select,
+  .json-advisory {
+    min-height: 44px;
+  }
+  #json-details {
+    max-height: 144px;
+  }
+}
+
 .template-title-row {
   display: grid;
   grid-template-columns: 24px minmax(0, 1fr) 32px;
