@@ -26,6 +26,7 @@ const libraryUI = createLibraryUI(model, templates, {
   target: messageUI.getTarget,
   setTarget: (value) => messageUI.setTarget(value),
   selected: messageUI.templateId,
+  changed: render,
 });
 const chatUI = createChatUI(model, {
   selected: () => selected,
@@ -49,6 +50,7 @@ function render(): void {
 }
 window.addEventListener('storage', (event) => {
   if (templates.isStorageKey(event.key)) {
+    libraryUI.cancelDrag();
     templates.reload();
     render();
   }

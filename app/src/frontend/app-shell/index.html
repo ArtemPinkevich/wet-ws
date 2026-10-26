@@ -395,6 +395,22 @@
         ><button id="dirty-confirm" class="primary">Открыть</button>
       </div>
     </dialog>
+    <dialog
+      id="delete-dialog"
+      aria-labelledby="delete-heading"
+      aria-describedby="delete-description"
+    >
+      <h2 id="delete-heading">Удалить заготовку?</h2>
+      <p id="delete-description">
+        «<strong id="delete-name"></strong>» будет удалена из библиотеки.
+        Открытый текст останется в редакторе.
+      </p>
+      <p id="delete-error" class="save-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button id="delete-cancel">Отмена</button
+        ><button id="delete-confirm" class="danger-button">Удалить</button>
+      </div>
+    </dialog>
     <script type="module" src="/frontend/app-shell/app.js"></script>
   </body>
 </html>

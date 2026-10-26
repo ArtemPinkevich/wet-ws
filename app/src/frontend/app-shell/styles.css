@@ -1860,3 +1860,113 @@ body[data-traffic='chat'] .template-bottom {
 .editor-subtitle {
   overflow-wrap: anywhere;
 }
+
+.template-title-row {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 32px;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.template-title-row .template-open {
+  display: block;
+  align-content: center;
+  min-width: 0;
+  min-height: 32px;
+  padding: 4px 0;
+  line-height: 24px;
+  text-align: left;
+}
+.template-drag-handle {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 32px;
+  min-height: 32px;
+  padding: 4px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  cursor: grab;
+  touch-action: none;
+}
+.template-drag-handle .od-icon {
+  --od-icon-size: 16px;
+}
+.template-drag-handle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.template-dragging,
+.template-dragging * {
+  cursor: grabbing !important;
+  user-select: none;
+}
+.template-item.drag-source {
+  opacity: 0.55;
+}
+.template-item.drop-before {
+  box-shadow: inset 0 2px 0 var(--accent);
+}
+.template-item.drop-after {
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+@media (hover: hover) {
+  .template-drag-handle:hover {
+    background: var(--raised);
+    color: var(--text);
+  }
+}
+@media (pointer: coarse), (max-width: 480px) {
+  .template-title-row {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+  }
+  .template-drag-handle {
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
+  .template-title-row .template-open {
+    min-height: 44px;
+  }
+}
+/* Keep deletion beside the name, separate from quick sending. */
+.template-delete {
+  width: 32px;
+  min-height: 32px;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+}
+.template-delete .od-icon {
+  --od-icon-size: 16px;
+}
+@media (hover: hover) {
+  .template-delete:not(:disabled):hover {
+    color: var(--error);
+    background: var(--surface-hover);
+  }
+}
+@media (pointer: coarse), (max-width: 480px) {
+  .template-delete {
+    width: 44px;
+    min-height: 44px;
+  }
+}
+.library-empty {
+  padding: 16px;
+  display: grid;
+  gap: 8px;
+}
+#delete-name {
+  overflow-wrap: anywhere;
+}
+#delete-dialog .danger-button {
+  background: #753c42;
+  border-color: #a7646c;
+  color: #fff;
+}

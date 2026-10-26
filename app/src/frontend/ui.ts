@@ -16,12 +16,24 @@ export function escapeText(value: string): string {
 }
 
 const paths: Record<string, string> = {
+  trash: 'M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7',
   send: 'm4 4 17 8-17 8 3-8-3-8Zm3 8h14',
   inspect: 'M9 3v18M5 3h14v18H5zM14 9l3 3-3 3',
   expand: 'M12 8V3m-3 3 3-3 3 3M12 16v5m-3-3 3 3 3-3M4 12h16',
   fold: 'M12 3v5m-3-3 3 3 3-3M12 21v-5m-3 3 3-3 3 3M4 12h16',
 };
 export function icon(name: string): string {
+  if (name === 'grip')
+    return (
+      '<svg class="od-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+      [5, 12, 19]
+        .map(
+          (y) =>
+            `<circle cx="8" cy="${y}" r="1.5"/><circle cx="16" cy="${y}" r="1.5"/>`,
+        )
+        .join('') +
+      '</svg>'
+    );
   return `<svg class="od-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${paths[name] || paths['send']}"/></svg>`;
 }
 export function highlight(text: string): string {
