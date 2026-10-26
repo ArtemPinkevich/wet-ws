@@ -1,7 +1,8 @@
 import type { AppModel } from '../app-model/model.js';
 import type { Entry } from '../../backend/history/history.protocol.js';
 import type { Template, Templates } from '../library-ui/templates.js';
-import { el, highlight, notify } from '../ui.js';
+import { el, escapeText, highlight, notify } from '../ui.js';
+import { checkJsonSyntax, type JsonSyntax } from './json-syntax.js';
 
 /** Textarea exposes LF lines. Preserve untouched CR/CRLF bytes from the source. */
 export function applyTextareaEdit(raw: string, next: string): string {
@@ -50,6 +51,88 @@ export function createMessageUI(
     originFocus: HTMLElement | null = null;
   const dialog = el<HTMLDialogElement>('dirty-dialog');
   const dirty = (): boolean => raw !== base;
+  const jsonMode = el<HTMLSelectElement>('json-mode');
+  const jsonStatus = el<HTMLButtonElement>('json-status');
+  const jsonDetails = el('json-details');
+  let jsonResult: JsonSyntax = { kind: 'neutral' };
+  let jsonTimer: ReturnType<typeof setTimeout> | undefined;
+  function paintGutter(): void {
+    el('line-numbers').innerHTML = text.value
+      .split('\n')
+      .map((_, index) => {
+        const bad =
+          jsonResult.kind === 'invalid' && jsonResult.line === index + 1;
+        return `<span class="gutter-line${bad ? ' json-error-line' : ''}">${bad ? '<b>!</b>' : ''}${index + 1}</span>`;
+      })
+      .join('');
+  }
+  function closeJsonDetails(): void {
+    const focused = jsonDetails.contains(document.activeElement);
+    jsonDetails.hidden = true;
+    jsonStatus.setAttribute('aria-expanded', 'false');
+    if (focused) jsonStatus.focus({ preventScroll: true });
+  }
+  function paintJson(): void {
+    const bad = jsonResult.kind === 'invalid';
+    text.setAttribute('aria-invalid', String(bad));
+    jsonStatus.classList.toggle('json-invalid', bad);
+    jsonStatus.setAttribute('aria-disabled', String(!bad));
+    jsonStatus.textContent = bad
+      ? '! Некорректный JSON'
+      : jsonMode.value === 'text'
+        ? 'Text'
+        : !text.value.trim()
+          ? 'JSON · пусто'
+          : jsonResult.kind === 'valid'
+            ? 'JSON ✓'
+            : 'JSON';
+    const description =
+      jsonResult.kind === 'invalid'
+        ? `${jsonResult.line ? `Строка ${jsonResult.line}, столбец ${jsonResult.column}.` : 'Точная позиция недоступна.'} Проверьте запятые, кавычки и скобки. Корректность JSON не ограничивает отправку и сохранение.`
+        : '';
+    el('json-error-description').textContent = description;
+    el('json-error-summary').textContent = bad
+      ? `Некорректный JSON. ${description}`
+      : '';
+    el('json-parser-message').textContent =
+      jsonResult.kind === 'invalid' ? jsonResult.message : '';
+    paintGutter();
+    syncScroll();
+  }
+  function queueJsonCheck(): void {
+    clearTimeout(jsonTimer);
+    jsonResult = { kind: 'neutral' };
+    closeJsonDetails();
+    paintJson();
+    const snapshot = text.value;
+    if (jsonMode.value === 'text' || !snapshot.trim()) return;
+    jsonTimer = setTimeout(() => {
+      if (text.value !== snapshot || jsonMode.value !== 'json') return;
+      jsonResult = checkJsonSyntax(snapshot);
+      paintJson();
+    }, 200);
+  }
+  jsonStatus.onclick = () => {
+    if (jsonResult.kind !== 'invalid') return;
+    jsonDetails.hidden = !jsonDetails.hidden;
+    jsonStatus.setAttribute('aria-expanded', String(!jsonDetails.hidden));
+  };
+  el('json-details-close').onclick = () => {
+    closeJsonDetails();
+    jsonStatus.focus({ preventScroll: true });
+  };
+  jsonDetails.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeJsonDetails();
+      jsonStatus.focus({ preventScroll: true });
+    }
+  });
+  jsonMode.onchange = () => {
+    paint();
+    queueJsonCheck();
+  };
+  window.addEventListener('pagehide', () => clearTimeout(jsonTimer));
   function syncScroll(): void {
     el('highlight').scrollTop = text.scrollTop;
     el('highlight').scrollLeft = text.scrollLeft;
@@ -57,17 +140,17 @@ export function createMessageUI(
   }
   function paint(): void {
     el('highlight').innerHTML =
-      highlight(text.value) + (text.value.endsWith('\n') ? '\n ' : '');
-    el('line-numbers').textContent = Array.from(
-      { length: text.value.split('\n').length },
-      (_, i) => i + 1,
-    ).join('\n');
+      (jsonMode.value === 'text'
+        ? escapeText(text.value)
+        : highlight(text.value)) + (text.value.endsWith('\n') ? '\n ' : '');
+    paintGutter();
     el('editor-mode').textContent = dirty()
       ? 'Черновик · изменён'
       : source
         ? 'Сообщение'
         : 'Черновик';
     el('rail-dirty').hidden = !dirty();
+    el('editor-unsaved').hidden = !dirty();
     el('copy-note').hidden = !source;
     el('text-size').textContent = `${new TextEncoder().encode(raw).length} Б`;
     const lines = text.value.slice(0, text.selectionStart).split('\n');
@@ -110,6 +193,7 @@ export function createMessageUI(
       text.scrollLeft = 0;
       selected(key);
       paint();
+      queueJsonCheck();
       changed();
     });
   }
@@ -134,6 +218,7 @@ export function createMessageUI(
   text.addEventListener('input', () => {
     raw = applyTextareaEdit(raw, text.value);
     paint();
+    queueJsonCheck();
   });
   text.addEventListener('scroll', syncScroll, { passive: true });
   for (const event of ['click', 'keyup', 'select'])
