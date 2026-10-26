@@ -26,7 +26,8 @@
     "check": "npm run format:check && npm run lint && npm run typecheck",
     "make:docker": "node scripts/make-docker-release.mjs",
     "check:iteration-03": "node scripts/check-iteration-03.mjs",
-    "check:iteration-04": "node scripts/check-iteration-04.mjs"
+    "check:iteration-04": "node scripts/check-iteration-04.mjs",
+    "check:iteration-05": "node scripts/check-iteration-05.mjs"
   },
   "dependencies": {
     "ws": "8.22.0"

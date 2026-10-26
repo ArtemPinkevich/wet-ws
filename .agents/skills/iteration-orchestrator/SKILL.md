@@ -9,56 +9,56 @@ Use the minimum process necessary to safely implement the iteration.
 
 ## Workflow
 
-1. Find the user stories selected for the iteration.
-2. Collect only relevant current project context.
-3. Create or resume `docs/engineering/iterations/iteration-NN/context-pack.md` as the main working document, using the [Context Pack reference](references/iteration-context-pack.md). Keep scope, acceptance criteria, hidden requirements, decisions, open questions and evidence there. Do not require separate requirements, architecture and UX files. A new iteration starts with this file only; preserve useful historical/visual/evidence artifacts by explicit purpose.
-4. Run gates in order:
+Find selected user stories and collect relevant context. Create or resume `docs/engineering/iterations/iteration-NN/context-pack.md` using the [Context Pack reference](references/iteration-context-pack.md). It holds scope, criteria, decisions, questions and evidence. A new iteration starts with this file only; no separate requirements, architecture, UX or routing document by default.
 
-- Iteration Scope Gate
-- Hidden Requirements Gate
-- Architecture Impact Gate
-- Protocol & Data Contract Gate
-- UX Impact Gate
-- Reliability & Concurrency Gate
-- Implementation Ready Gate
+### Early routing
 
-5. Every gate must return one of:
+At start/resumption quickly assess:
 
-- PASS
-- SKIP
-- BLOCK
-- ESCALATE
+- Does user interaction or visual UI change, including errors, recovery and nonvisual interaction?
+- Are product requirements clear, or is focused clarification needed?
+- Do architecture, module responsibilities or dependencies change?
+- Does protocol shape or meaning change?
+- Are existing decisions sufficient for implementation?
 
-6. Do not write code until Implementation Ready returns PASS.
+Select work from these answers, not another checklist. Record material impacts and dependencies briefly in the pack. Backend changes are not automatically UI changes; protocol changes may affect visible behavior. Revisit routing when new evidence changes impact.
 
-7. Use Sol for routine analysis and implementation.
+Keep the existing gates: Iteration Scope, Hidden Requirements, Architecture Impact, Protocol & Data Contract, UX Impact, Reliability & Concurrency, Implementation Ready. They return PASS / SKIP / BLOCK / ESCALATE and are conditional checks, not an execution order. Briefly assess irrelevant impact and mark SKIP without running that analysis. NOT RUN means missing execution, not SKIP. Retrospective UNKNOWN / NOT RECORDED preserves absent evidence.
 
-8. Escalate only narrow, materially difficult questions to Astra.
+### Work according to impact
 
-Escalate when a material decision remains unresolved after a bounded attempt: evidence or constraints conflict, a repeated approach produces no new evidence, or Sol cannot justify a consequential choice. Do not wait for exhaustion and do not impose an automatic attempt count. Missing user intent/approval is BLOCK for the user, not reasoning work for Astra. Examples include a substantial new system boundary, conflicting ownership/invariants, serious trade-offs, difficult contract interactions or conflicting canonical constraints. File count, routine refactoring and ordinary bugs are not reasons for Astra. Routine fixes and unfamiliar but straightforward lookups remain with Sol or a relevant skill.
+**No UI/UX change:** do not start UI design or invoke OpenDesign. UX Impact is SKIP with a short reason in existing gate state; no special no-UI report or artifacts. Resolve only applicable technical/requirements questions. Sufficient existing decisions can lead directly to Implementation Ready without repeated analysis.
 
-9. When escalating:
-   - provide only the minimum relevant context;
-   - prefer Astra Low initially;
-   - do not ask Astra to redesign unrelated parts of the system;
-   - request the minimum sufficient solution;
-   - keep the result concise.
+**UI/UX change:** use selected user stories, canonical requirements, existing backend/protocol and implemented capabilities to start interactive design in OpenDesign as soon as scenarios and constraints are clear enough. Do not wait for all architecture/protocol work. The UI track develops interactive scenarios/proposals; the technical track checks only affected backend capabilities, ownership, protocol and feasibility. Exchange material constraints and scenario discoveries. An unresolved dependency blocks the affected decision, not unrelated exploration.
 
-10. After Implementation Ready passes:
-    - when an actual transfer to Sol is needed, generate the minimum temporary handoff text from the pack according to the lifecycle below;
-    - implement the selected stories;
-    - run tests and relevant checks;
-    - verify acceptance criteria and discovered edge cases;
-    - check architecture/contract conformance when relevant;
-    - update canonical project documentation only when it actually changed.
+Tracks may run in parallel or interleave in one agent. Small changes may use one sequential pass. Parallelism requires neither agents, duplicated packs nor permanent handoffs. Isolated prototype code is allowed before readiness; production `app` code is not. Simulated behavior does not prove real transport/persistence.
 
-After Implementation, run Verification, then Architecture & Contract Conformance with the existing Independent Reviewer; resolve blocking findings and run a relevant recheck before deciding Iteration Done. Include only applicable architectural/contract checks; review is part of conformance, not a new mandatory code-review gate or a second reviewer. Product gates use the same PASS / SKIP / BLOCK / ESCALATE results. After Done, perform the nonblocking Process Health Check below; it evaluates the workflow, not product acceptance, and does not reopen or delay Done. NOT RUN describes missing execution, not a successful SKIP. For retrospective packs, use UNKNOWN / NOT RECORDED when a historical gate has no evidence; never infer pre-implementation readiness merely from later completion. Preserve explicit acceptance and known limitations.
+### Design tools
 
-During development, use format, lint:fix and suitable narrow checks as needed. Before completing **any change set**, including documentation/workflow-only changes, run the full canonical `npm run check` from `app` and obtain a successful result. This is part of existing Verification, not a new product gate; narrow checks and an earlier success on superseded checked files/configuration do not substitute for it. Record the command/result in existing verification evidence or the completion response; do not create a separate quality report. A failed check prevents completion, while a successful check alone proves neither functional acceptance nor Iteration Done. Tests remain a separate verification layer selected for the change; do not merge them into check by default. Durable principles live in [the app README](../../../app/README.md#качество-кода); concrete machine-enforced rules live in existing tooling configuration.
+OpenDesign is the sole primary tool for visual design and interactive owner review: open the agreed project, or create the initial one if absent, then evolve it rather than recreate it. Check affected scenarios and states by interaction at relevant sizes; label simulated backend behavior and missing capabilities. Alternatives serve material uncertainty, not a required variant count; a full redesign explores alternative interactive concepts where the new UX is unresolved. Old frontend components and concepts, including Concept A, are references, not constraints; preserve product requirements, backend/protocol semantics and architectural decisions. If OpenDesign is unavailable, report the blocker; an equivalent interactive method requires a separate owner-approved exception, never silent substitution or screenshots alone.
 
-11. Do not create documents merely because a gate ran.
+Impeccable is outside the WET-WS workflow; leave its global installation intact for other projects. Do not introduce a replacement UI skill, tool-specific gate or additional design specification. Prototype revisions and agreement follow the existing convergence and lifecycle rules below; design tooling does not authorize dependencies, hooks or production changes.
 
-UX SKIP / NO_CHANGE creates no mockups. A small nonvisual behavior delta stays in the Context Pack. Every visual UI change, new screen or significant visual state requires a mockup delta containing only affected surfaces/states in docs/engineering/iterations/iteration-NN/mockups/. Mirror the relative paths of docs/engineering/ui/mockups/, the sole canonical set for current implemented UI; do not copy the full set. Keep proposed or accepted-but-unimplemented visuals out of canonical. Record each file status and any replaced or removed surface in the pack.
+### Implementation Ready: convergence before production code
+
+PASS requires both:
+
+- **Product agreement:** for significant UI/UX changes the owner reviewed an identified interactive prototype revision and agreed scenarios, material behavior and composition. Significant means a new flow/screen, changed interaction semantics or substantial composition/redesign. A narrowly specified small visual correction may rely on the owner's explicit request plus a checked interactive result; do not add a full concept approval ceremony.
+- **Technical readiness:** applicable requirements, architecture, protocol and reliability decisions are resolved; ownership, errors, constraints and verification are sufficiently clear. No-change aspects need no redesign.
+
+Record the prototype/project reference, revision or preserved export, agreement scope and source/date in the existing pack. UI approval does not close technical questions; feasibility does not imply owner approval. No-UI work needs only applicable technical readiness. Return contradictions to the affected track and recheck changed agreement before PASS. Missing owner decisions are BLOCK, not Astra reasoning work.
+
+Internal function names and final file layout need not all be predetermined. Production changes begin only after PASS. Handoff is temporary text only for actual transfer; implement selected scope, verify criteria/edge cases and update canonical only for accepted, implemented and verified changes.
+
+### Models and completion
+
+Sol handles routing, context/code inspection, routine analysis, constraints, ordinary OpenDesign prototype work, implementation and verification. Use Astra for a narrowly scoped, materially difficult UX/alternative-concept, hidden-requirement, architecture or contradiction question after a bounded attempt. Conflicting evidence, an unjustifiable consequential choice or a repeated approach with no new evidence can warrant escalation; file count and routine unfamiliarity do not. Do not require Astra at each UI gate or wait for exhaustion. Give minimum context, prefer Astra Low initially, request a sufficient concise decision, return results to the pack and resume routine execution with Sol.
+
+After implementation run Verification, then applicable Architecture & Contract Conformance with the existing Independent Reviewer. Resolve blocking findings and perform a relevant recheck before Done. Review is part of conformance, not a new gate. Missing execution is never PASS. After Done perform the nonblocking Process Health Check below; it neither reopens nor delays acceptance. Preserve explicit acceptance and known limitations.
+
+During development use suitable narrow checks/fixing commands. Before completing **any change set**, including documentation/workflow-only work, obtain successful full `npm run check` from `app`. This belongs to existing Verification; narrow checks or success on superseded files/configuration do not substitute. Record the actual command/result in existing evidence or the completion response, not another report. Failure prevents completion; success alone proves neither functional acceptance nor Done. Tests remain a separate layer selected for the change. Durable principles live in [the app README](../../../app/README.md#качество-кода).
+
+Do not create artifacts merely because a gate ran. UI evidence follows the lifecycle below. On resumption read old gate tables as recorded decisions, not a mandatory linear order; preserve valid product/technical decisions and reconsider affected readiness. A process change neither accepts an old prototype nor authorizes redesign implementation.
 
 ## Planning gate decisions
 
@@ -66,7 +66,9 @@ UX SKIP / NO_CHANGE creates no mockups. A small nonvisual behavior delta stays i
 
 **Protocol & Data Contract:** when exchange or its meaning changes, identify affected protocol units/owners, single definitions and how to discover the full contract, agreement between sender/receiver, runtime input validation, and response/error semantics. Assess ordering, recovery, retries and compatibility only where material to this change. No contract change means SKIP with a short reason. Do not design future commands or inspect every possible protocol property on every change.
 
-**Implementation Ready:** reconcile prior gates: material ownership, dependencies, contract shape/meaning, errors and verification must be resolved before coding. Refer to their decisions and criteria rather than repeating checklists. Internal functions and final file layout need not all be predetermined; missing author decisions remain BLOCK, not Astra work.
+**UX Impact:** SKIP only when neither interaction nor visual UI changes. Otherwise PASS requires affected scenarios and interactive evidence reviewed under the agreement conditions above; unresolved significant owner choices are BLOCK. Early exploration may continue while another track is incomplete.
+
+**Implementation Ready:** apply convergence above, reconciling applicable gate results and evidence rather than repeating analysis. Production code requires PASS; a prototype alone is insufficient.
 
 ## Backlog routing and relevance
 
@@ -82,25 +84,31 @@ Use docs/engineering/architecture/overview.md as the sole canonical current arch
 
 ## UI mockup completion
 
-At Iteration Done, if iteration-NN/mockups/ exists, confirm that each accepted visual change was implemented, verified and accepted by the user. Apply only that accepted delta to docs/engineering/ui/mockups/, including explicitly agreed removal of replaced surfaces. Resolve or exclude outdated/unaccepted variants rather than promoting the whole directory blindly. Verify canonical mockups reflect the final implemented UI, update links, then delete the iteration mockups directory; completed iterations retain no copies. Git stores change history; this rule does not authorize an unsolicited commit. Retain set-specific generators only when reproducibility remains useful and update their output paths. SVG sources and PNG previews may coexist. Do not create an additional UI overview/index/history source of truth.
+The persistent OpenDesign project is the evolving design workspace. Reuse its accepted prototype in later UI iterations, distinguishing proposals by revision/variant. Keep an inspectable reference or runnable export of the reviewed revision in the pack; do not create a fresh project or several variants for every small edit. Unimplemented proposals remain outside canonical implemented UI.
 
-Before relying on Git to preserve unique content being replaced/deleted, verify that those exact contents are reachable in a commit; a .git directory or an untracked file is not history. If not preserved, keep the unique material and request a human decision on saving it or explicitly discarding it. Do not automatically commit, fabricate an archive, or claim cleanup complete. This check applies to loss of unique history, not removal of a verified duplicate whose useful content remains elsewhere. Until history is saved, already identified unaccepted variants may stay explicitly excluded from the active delta; do not silently delete them.
+`docs/engineering/ui/mockups/` remains evidence of the current implemented UI. Existing PNG/SVGs are evidence/history, not a compulsory prototype format or baseline for a full redesign. When local proposal/export files are needed, use affected surfaces only in `iteration-NN/mockups/`, grouped by corresponding surface; exact screenshot filenames and mirrored static files are not required. SKIP/NO_CHANGE creates none. A stable reviewed project revision can avoid duplicate local artifacts; a mutable unversioned link alone cannot prove approval.
+
+At Done compare implementation against the agreed interactive revision and relevant states, then update affected canonical evidence after implementation, verification and owner acceptance. Reconcile the reusable prototype with the accepted implemented result without promoting unrelated proposals. Approval, implementation and verification remain distinct; no additional UI overview, history index or approval document is required.
+
+Temporary iteration UI proposals, local prototype copies and review exports in `iteration-NN/mockups/` stay local and must be excluded from commits and merge requests from the moment they are created. Keep them ignored; before preparing an MR inspect its actual changed/staged file list, including already tracked files (gitignore does not untrack them). Do not include these temporary files in an MR even while owner acceptance is pending. Their local availability is for implementation and independent review, not publication.
+
+After the owner accepts the implemented iteration, delete its temporary UI files and exports as completion cleanup. The owner explicitly authorized this lifecycle on 2026-10-25; no archive or additional per-iteration approval is required for these temporary files. Record agreement, revision identity and verification conclusions in the Context Pack before cleanup, and replace temporary-file links with retained project/revision references. Do not move these files into a private archive instead of deleting them. Keep the persistent OpenDesign project and canonical implemented UI evidence in `docs/engineering/ui/mockups/`; this rule does not authorize deleting those sources or sweeping historical iterations. For other unique non-temporary history, verify a retained source or ask the owner before deletion; do not automatically commit or fabricate an archive.
+
 ## Iteration handoff lifecycle
 
 The Context Pack stores iteration state. Iteration Handoff is a temporary transport artifact containing only the minimum context needed by another model or session. Sources of truth are context-pack.md and the corresponding canonical project documentation; neither a handoff nor the receiving model response is an additional source of truth.
 
-Generate a handoff only when a real context transfer is needed, including ESCALATE to Astra for one narrow question or Implementation Ready PASS to Sol for implementation. A new session alone does not require one. Default to temporary text sent to the receiving session, not a file. Do not automatically create iteration-NN/iteration-handoff.md or any equivalent instance. Instances are not stored in iteration folders, retained as permanent documentation, or committed to the repository.
+Generate a handoff only when a real context transfer is needed, including a focused design/technical question during planning or Implementation Ready PASS to Sol for production implementation. Planning transfers do not require Ready PASS and do not authorize production code. A new session alone does not require one. Default to temporary text sent to the receiving session, not a file. Do not automatically create iteration-NN/iteration-handoff.md or any equivalent instance. Instances are not stored in iteration folders, retained as permanent documentation, or committed to the repository.
 
 Use the [handoff reference](references/iteration-handoff.md) only to structure that temporary text; select relevant sections rather than filling the entire template. The existence of the template does not require creating a file. Include the source Context Pack reference and the snapshot date; the receiver must use canonical state if it conflicts with the transport text.
 
 After processing by Astra/Sol, return every accepted decision, clarification and state change to the Context Pack, or to the corresponding canonical document when it belongs to long-term project state. Preserve proposal/acceptance/implementation status and existing canonical update rules. Do not use a raw response as a parallel specification. Once the results are reconciled, the handoff has no documentation role; any temporary instance used for transport is discarded, without adding it to Git.
 ## Specialist selection
 
-Run gates, not a sequence of specialist skills or agents. Handle ordinary analysis, implementation preparation and verification yourself. PASS/SKIP requires no specialist; BLOCK alone does not require one either (missing user input returns to the user). Invoke a skill only for an identified gap where its method is useful; record the narrow question and integrate the result into the Context Pack. Do not add NEEDS_SPECIALIST as a new gate status.
+Run gates, not a sequence of specialist skills or agents. Handle ordinary analysis, implementation preparation and verification yourself. PASS/SKIP requires no specialist; BLOCK alone does not require one either (missing user input returns to the user). Technical skills serve identified gaps; UI/UX changes use OpenDesign directly through early routing. Record material questions/results in the pack, not a role pipeline. Do not add NEEDS_SPECIALIST as a new gate status.
 
 - [wet-ws-system-requirements](../wet-ws-system-requirements/SKILL.md): unclear behavior, hidden constraints or acceptance/transport evidence in Hidden Requirements, Protocol & Data Contract, Reliability & Concurrency or Verification.
 - [wet-ws-c4-containers](../wet-ws-c4-containers/SKILL.md): a material boundary, responsibility, runtime, technology or deployment question in Architecture Impact DELTA/REVIEW; select Context or Container analysis only as needed, not both automatically.
-- [wet-ws-ui-design](../wet-ws-ui-design/SKILL.md): UX states, recovery, focus/accessibility or visual design in UX Impact. A visual delta must be captured in mockups even when ordinary work can be handled without this skill.
 
 A genuinely difficult narrow decision may use ESCALATE to Astra; specialist invocation neither requires another agent nor authorizes implementation. Existing PASS/SKIP/BLOCK/ESCALATE, Implementation Ready and temporary handoff rules remain unchanged.
 ## Autonomous agents

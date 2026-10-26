@@ -74,4 +74,43 @@ export class Templates {
   isStorageKey(value: string | null): boolean {
     return value === null || value === key;
   }
+  remove(id: string): boolean {
+    const items = this.read();
+    const next = items.filter((item) => item.id !== id);
+    return this.commit(items, next);
+  }
+  move(id: string, step: -1 | 1): boolean {
+    const items = this.read();
+    const index = items.findIndex((item) => item.id === id);
+    if (index < 0) throw new Error('Заготовка уже удалена в другой вкладке');
+    const next = items.slice();
+    const destination = index + step;
+    if (destination >= 0 && destination < items.length) {
+      [next[index], next[destination]] = [next[destination]!, next[index]!];
+    }
+    return this.commit(items, next);
+  }
+  reorder(id: string, anchorId: string, after: boolean): boolean {
+    const items = this.read();
+    const item = items.find((entry) => entry.id === id);
+    if (!item || !items.some((entry) => entry.id === anchorId))
+      throw new Error(
+        'Перемещение отменено: заготовка удалена в другой вкладке',
+      );
+    const next = items.filter((entry) => entry.id !== id);
+    if (id === anchorId) return this.commit(items, items);
+    const index = next.findIndex((entry) => entry.id === anchorId);
+    next.splice(index + (after ? 1 : 0), 0, item);
+    return this.commit(items, next);
+  }
+  private commit(previous: Template[], next: Template[]): boolean {
+    const changed =
+      previous.length !== next.length ||
+      previous.some((item, index) => item.id !== next[index]?.id);
+    if (changed)
+      this.storage().setItem(key, JSON.stringify({ version: 1, items: next }));
+    this.items = next;
+    this.error = '';
+    return changed;
+  }
 }

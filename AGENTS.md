@@ -12,7 +12,7 @@
 
 Бизнес-анализ выполняет основной агент: сравнение аналогов, разбор опыта автора и критическая проверка гипотез без исследовательских субагентов.
 
-Отдельный исполнитель — [Independent Reviewer](.codex/agents/independent-reviewer.toml). Условия вызова задаёт [iteration-orchestrator](.agents/skills/iteration-orchestrator/SKILL.md#autonomous-agents); методики требований, архитектуры и UI выполняются основным агентом через skills по необходимости. Каждый запуск ограничен заданием, источниками и владением файлами; создание определения не запускает постоянную работу.
+Отдельный исполнитель — [Independent Reviewer](.codex/agents/independent-reviewer.toml). Условия вызова задаёт [iteration-orchestrator](.agents/skills/iteration-orchestrator/SKILL.md#autonomous-agents); основной агент выбирает технические skills по конкретному пробелу, а OpenDesign использует при UI/UX impact по маршрутизации. Каждый запуск ограничен заданием, источниками и владением файлами; создание определения не запускает постоянную работу.
 
 Задания ролям должны учитывать текущий этап и ограничения Context Pack активной итерации и [дорожной карты](docs/product/roadmap.md). Пока нет возможности проводить интервью и внешние пользовательские тесты; анализ ИИ не заменяет их.
 
@@ -34,11 +34,13 @@ Independent Reviewer проверяет итог перед Done. Canonical тр
 - When starting or resuming a product iteration, use `$iteration-orchestrator`.
 - Do not begin implementation until the orchestrator reaches `Implementation Ready Gate: PASS`.
 - Prefer `SKIP` when a gate requires no work.
-- Specialized skills are selected for a concrete gate gap; autonomous agents follow the triggers in iteration-orchestrator. No role pipeline. Selection rules belong to iteration-orchestrator.
+- Route by impact at iteration start: no UI/UX change skips UI design; UI/UX change starts interactive design early in OpenDesign. Applicable technical checks may run alongside it; gate names do not impose a linear sequence. Routing and project-specific tool boundaries belong to iteration-orchestrator.
+- Significant UI/UX changes require owner agreement on an identified interactive prototype and technical readiness before Implementation Ready PASS. Prototype code stays separate from production app code.
+- Autonomous agents follow the triggers in iteration-orchestrator; parallel tracks do not require a role pipeline.
 - Escalate only narrow, materially difficult decisions to Astra.
 - Do not use Astra for routine repository exploration or implementation.
 
-UI mockups: текущий реализованный UI хранится только в docs/engineering/ui/mockups/. Визуальное изменение требует только затронутой delta в iteration-NN/mockups/ с зеркальными относительными путями; невизуальное может остаться в Context Pack, SKIP/NO_CHANGE не создаёт mockups. После реализации, проверки и приёмки в Done принятая delta обновляет canonical, ссылки проверяются. Очистка delta и сохранность уникальных материалов проверяются по [UI lifecycle orchestrator](.agents/skills/iteration-orchestrator/SKILL.md#ui-mockup-completion): наличие .git не доказывает сохранённую историю; без неё уникальный материал остаётся до решения автора, без автоматического коммита.
+OpenDesign — единственный основной инструмент визуального проектирования и интерактивного согласования WET-WS по [правилам orchestrator](.agents/skills/iteration-orchestrator/SKILL.md#design-tools). Impeccable в процессе WET-WS не используется; его глобальная установка для других проектов сохраняется. Canonical свидетельства текущего реализованного UI остаются в docs/engineering/ui/mockups/; предложения не подменяют реализацию. Хранение ревизий/экспортов, обновление canonical и сохранность истории определяет [UI lifecycle orchestrator](.agents/skills/iteration-orchestrator/SKILL.md#ui-mockup-completion).
 
 ## Canonical code-quality gate
 

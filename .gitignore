@@ -1,5 +1,7 @@
 /.internal/
 /.local-instructions.md
+# Temporary iteration UI prototypes/exports stay local, outside commits and MRs.
+/docs/engineering/iterations/iteration-*/mockups/
 /.codex/agents/talk-agent.toml
 
 # Only the public reviewer definition belongs in .codex.

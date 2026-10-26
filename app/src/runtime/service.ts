@@ -74,6 +74,7 @@ export async function startService(
     ['/frontend/ui.js', asset('ui.js')],
     ['/frontend/library-ui/templates.js', asset('library-ui/templates.js')],
     ['/frontend/library-ui/library-ui.js', asset('library-ui/library-ui.js')],
+    ['/frontend/library-ui/drag.js', asset('library-ui/drag.js')],
     ['/frontend/workbench-ui/layout.js', asset('workbench-ui/layout.js')],
     [
       '/frontend/control-client/control-client.js',

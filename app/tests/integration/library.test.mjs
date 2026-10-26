@@ -5,6 +5,70 @@ import { History } from '../../dist/backend/history/history.js';
 import { isEntry } from '../../dist/backend/history/history.protocol.js';
 import { applyTextareaEdit } from '../../dist/frontend/message-ui/message-ui.js';
 
+test('I05: mutations use fresh IDs, retain literal records and free capacity', () => {
+  let raw = null;
+  const storage = {
+    getItem: () => raw,
+    setItem: (_key, value) => {
+      raw = value;
+    },
+  };
+  const first = new Templates(() => storage);
+  const a = first.save('same', 'a\r\nb\rc\n');
+  const b = first.save('same', '<b>literal</b>');
+  const second = new Templates(() => storage);
+  const c = second.save('third', '');
+  assert.equal(first.reorder(a.id, c.id, true), true);
+  assert.deepEqual(first.items, [b, c, a]);
+  assert.equal(second.move(a.id, -1), true);
+  assert.deepEqual(second.items, [b, a, c]);
+  assert.equal(second.move(b.id, -1), false);
+  assert.equal(first.remove(a.id), true);
+  assert.equal(second.remove(a.id), false);
+  assert.throws(() => first.move(a.id, 1), /удалена/);
+  assert.throws(() => first.reorder(b.id, a.id, true), /удалена/);
+  assert.deepEqual(new Templates(() => storage).items, [b, c]);
+  for (let i = 2; i < 20; i++) first.save(String(i), '');
+  first.remove(b.id);
+  first.save('space freed', 'literal');
+  assert.equal(first.items.length, 20);
+  for (const item of [...first.items]) first.remove(item.id);
+  assert.deepEqual(new Templates(() => storage).items, []);
+});
+
+test('I05: failed mutations preserve stored and displayed records', () => {
+  let raw = null,
+    fail = false;
+  const storage = {
+    getItem: () => raw,
+    setItem: (_key, value) => {
+      if (fail) throw new Error('QuotaExceededError');
+      raw = value;
+    },
+  };
+  const library = new Templates(() => storage);
+  const a = library.save('same', 'a\r\n'),
+    b = library.save('same', 'b');
+  const saved = raw;
+  fail = true;
+  for (const operation of [
+    () => library.remove(a.id),
+    () => library.move(a.id, 1),
+    () => library.reorder(a.id, b.id, true),
+  ]) {
+    assert.throws(operation, /Quota/);
+    assert.equal(raw, saved);
+    assert.deepEqual(library.items, [a, b]);
+  }
+  fail = false;
+  raw = '{';
+  assert.throws(() => library.remove(a.id));
+  assert.throws(() => library.move(a.id, 1));
+  assert.throws(() => library.reorder(a.id, b.id, true));
+  assert.equal(raw, '{');
+  assert.deepEqual(library.items, [a, b]);
+});
+
 test('I04: textarea edits preserve source CR/CRLF in untouched lines', () => {
   const raw = 'a\r\nb\rc\n';
   assert.equal(applyTextareaEdit(raw, 'a\nb\nc\n'), raw);
